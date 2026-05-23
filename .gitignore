@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.ipynb_checkpoints/
+
+# LaTeX build artefacts (in case the manuscript is built here later)
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Large data files that should NOT be committed via plain git
+# (use git-lfs or a Zenodo deposit for these):
+#   Results/test_suite/sNN__*/samples.csv  may be tens to hundreds of MB each;
+#   the .csv glob is left UN-ignored so smaller summary CSVs (e.g. nmcmc_sweep_summary.csv)
+#   still commit normally. Add explicit paths here when populating Results/.

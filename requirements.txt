@@ -1,0 +1,8 @@
+# Minimal Python dependencies to consume the released chains and
+# regenerate the paper tables/figures. Tested with these versions on
+# /opt/miniconda3/envs/PhD (macOS, 2026-05).
+numpy>=2.0
+scipy>=1.13
+pandas>=2.2
+matplotlib>=3.9
+anesthetic>=2.8
