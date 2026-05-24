@@ -28,7 +28,7 @@ def main() -> int:
 
     opt_run = load_run(row.iloc[0]["run_id"])
     baseline_csv = os.path.join(
-        REPO_ROOT, "Results", "gwtc1_phasemarg",
+        REPO_ROOT, "results", "gwtc1_phasemarg",
         "PhaseMarg_Heterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_ref-gwtc1_baseline.csv",
     )
     baseline, w_b = read_nested_samples_csv(baseline_csv)

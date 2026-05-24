@@ -17,13 +17,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import gaussian_kde
 
-CSV_A    = 'Results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000/samples.csv'
-CSV_B    = 'Results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0000/samples.csv'
-CSV_FULL = 'Results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0000/samples.csv'
+CSV_A    = 'results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000/samples.csv'
+CSV_B    = 'results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0000/samples.csv'
+CSV_FULL = 'results/test_suite/s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0000/samples.csv'
 # seed=1 verification (s18)
-CSV_A1   = 'Results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0001/samples.csv'
-CSV_B1   = 'Results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0001/samples.csv'
-CSV_FULL1= 'Results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0001/samples.csv'
+CSV_A1   = 'results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0001/samples.csv'
+CSV_B1   = 'results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0001/samples.csv'
+CSV_FULL1= 'results/test_suite/s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0001/samples.csv'
 
 def load_dl_iota_h0(csv):
     s = load_nested_csv(csv)

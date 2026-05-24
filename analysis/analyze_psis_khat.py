@@ -156,7 +156,7 @@ def main():
 
     # Persist into paper_diagnostics.csv
     out_csv = os.path.join(
-        REPO_ROOT, "Results", "gwtc1_phasemarg", "paper_diagnostics.csv"
+        REPO_ROOT, "results", "gwtc1_phasemarg", "paper_diagnostics.csv"
     )
     diag = pd.read_csv(out_csv)
     # Add columns only if absent; populate only the reweighted row.

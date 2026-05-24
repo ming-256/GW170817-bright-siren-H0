@@ -157,7 +157,13 @@ GW150914_RUNS = [
 def build_h0_row(label, run_dir):
     x, w = load_samples(run_dir)
     if x is None:
-        return dict(label=label, run=run_dir, error='no samples')
+        return dict(label=label, run=run_dir, error='no samples',
+                    MAP=float('nan'), median=float('nan'),
+                    HPD68_lo=float('nan'), HPD68_hi=float('nan'),
+                    HPD95_lo=float('nan'), HPD95_hi=float('nan'),
+                    P_gt_120=float('nan'), P_gt_150=float('nan'),
+                    n_eff=float('nan'), N_samples=0,
+                    lnZ=None, dlnZ=None)
     lnz, dlnz = parse_lnZ(run_dir)
     return dict(
         label=label, run=run_dir,
@@ -274,7 +280,16 @@ def write_gw150914(rows, path):
 def main():
     print('=== Table 4: cross-waveform LVK-bounds ===')
     t4 = [build_h0_row(lbl, run) for lbl, run in TABLE4_CROSS_WAVEFORM]
+    missing = [r for r in t4 if r.get('error')]
+    if missing:
+        print()
+        print(f'  ! WARNING: {len(missing)} chain CSV(s) missing; corresponding rows will be NaN.')
+        for r in missing:
+            print(f'    - {r["run"]}/samples.csv  (download from Zenodo or regenerate via run_chains.sh)')
+        print()
     for r in t4:
+        if r.get('error'):
+            continue
         print(f"  {r['label']}: MAP={r['MAP']:.1f}, HPD68={_hpd_str(r['HPD68_lo'],r['HPD68_hi'])}, "
               f"P>120={r['P_gt_120']:.3f}, lnZ={r['lnZ']:.2f}±{r['dlnZ']:.2f}, n_eff={r['n_eff']:.0f}")
 

@@ -54,6 +54,15 @@ curl -L -o results/GW170817_GWTC-1.hdf5 \
 export GWTC1_HDF5="$(pwd)/results/GW170817_GWTC-1.hdf5"
 ```
 
+And the LVK GW150914 GWTC-2.1 reference HDF5 (used by Figure 1):
+
+```bash
+# From the LVK GWTC-2.1 Zenodo deposit (DOI 10.5281/zenodo.6513631)
+curl -L -o results/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5 \
+  "https://zenodo.org/record/6513631/files/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5"
+export GWTC2P1_GW150914_HDF5="$(pwd)/results/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5"
+```
+
 ## 3. Regenerate
 
 ```bash

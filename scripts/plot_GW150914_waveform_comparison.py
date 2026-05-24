@@ -42,7 +42,7 @@ def _load_GW150914(csv, has_inplane=False):
     )
 
 # --- Our IMRPhenomXPHM heterodyned, n_live=8000, n_mcmc=160 (s17a) ---
-s17a_csv = 'Results/test_suite/s17a__gw150914__imrphenomxphm__nlive8000_mcmc160__seed0000/samples.csv'
+s17a_csv = 'results/test_suite/s17a__gw150914__imrphenomxphm__nlive8000_mcmc160__seed0000/samples.csv'
 if os.path.exists(s17a_csv):
     datasets.append((_load_GW150914(s17a_csv, has_inplane=True),
                      'this work (IMRPhenomXPHM)', 'tab:green'))

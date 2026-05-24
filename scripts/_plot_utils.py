@@ -42,7 +42,10 @@ OUT_DIR = os.path.join(_ROOT, 'results', 'gwtc1_phasemarg', 'plots')
 os.makedirs(OUT_DIR, exist_ok=True)
 
 GWTC1_HDF5 = os.environ.get('GWTC1_HDF5', os.path.join(RESULTS_DIR, 'GW170817_GWTC-1.hdf5'))
-GWTC2P1_GW150914_HDF5 = 'EventData/GWOSC/GW150914/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5'
+GWTC2P1_GW150914_HDF5 = os.environ.get(
+    'GWTC2P1_GW150914_HDF5',
+    os.path.join(RESULTS_DIR, 'IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5'),
+)
 
 # --------------------------------------------------------------------------- #
 # Consistent color scheme

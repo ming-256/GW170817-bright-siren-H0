@@ -1,0 +1,24 @@
+source,waveform,kind,priors,n_live,dead_points,log_evidence,sigma_log_z,sampling_s,total_s
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,500,19650,486.73,0.3,158.1,234.9
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,1000,39900,486.04,0.21,225.9,304.0
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,2500,99750,486.32,0.13,457.6,549.8
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,5000,198000,486.66,0.1,761.0,872.1
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,10000,402000,485.92,0.07,1478.4,1659.0
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,20000,690000,485.95,0.05,1694.5,2034.6
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,50000,1725000,486.22,0.03,4812.3,6279.9
+scaling_study,IMRPhenomD_NRTidalv2,heterodyned,host-localised,100000,3450000,486.29,0.02,9149.5,14392.5
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,500,16250,490.35,0.3,,223.0
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,1000,33000,489.21,0.19,,350.0
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,2500,81250,489.78,0.13,,454.0
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,5000,162500,489.96,0.1,,858.0
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,10000,-1,489.78,0.07,,1560.0
+s13/s07,IMRPhenomD_NRTidalv2,heterodyned,lvk-bounds,20000,-1,489.75,0.06,,1880.0
+s15,IMRPhenomD_NRTidalv2,heterodyned,"lvk-bounds, narrow-sky",5000,140000,496.54,0.09,,735.2
+s11,IMRPhenomD_NRTidalv2,heterodyned,"lvk-bounds, tol1e-4",20000,840000,485.92,0.05,,2414.0
+s15,IMRPhenomXAS_NRTidalv3,heterodyned,"lvk-bounds, narrow-sky",5000,140000,496.49,0.1,,753.3
+gwtc1_phasemarg,IMRPhenomD_NRTidalv2,unheterodyned,full-sky,1500,51750,485.55,0.21,20128.1,20474.4
+s05,IMRPhenomD_NRTidalv2,unheterodyned,host-localised,500,17750,485.75,0.3,,7317.0
+gwtc1_phasemarg,IMRPhenomD_NRTidalv2,unheterodyned,host-localised,1500,45000,491.65,0.18,19543.1,20042.0
+s04,IMRPhenomD_NRTidalv2,unheterodyned,host-localised,2500,-1,490.51,0.14,36365.7,37200.2
+gwtc1_phasemarg,TaylorF2,unheterodyned,full-sky,1500,51750,486.74,0.19,5860.9,5981.2
+gwtc1_phasemarg,TaylorF2,unheterodyned,host-localised,1500,47250,490.46,0.18,8437.6,8615.3

@@ -11,7 +11,7 @@ One row per Table 4 / 5 / 6 entry, with MAP, weighted median, 68 %/95 % HPDs,
 P(H₀ > 120/150 km/s/Mpc), n_eff, ln Z ± σ.
 
 - Generator: `scripts/build_paper_tables.py`
-- Source chains: `results/test_suite/{s07__*_lvkbounds, s14__*xas*, s18__*xas*_vpmean*, s10__*_dL*, s18__*_dL*, s17a__gw150914, s06__gw150914}/samples.csv`
+- Source chains: `results/test_suite/{s07__*_lvkbounds, s14__*xas*, s18__*xas*_vpmean*, s10__*_dL*, s18__*_dL*, s17a__gw150914}/samples.csv`
 - Underwrites: Tables 4, 5, 6 in the paper; the headline numbers in the abstract
 
 ### `paper_diagnostics.csv`
