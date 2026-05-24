@@ -75,8 +75,8 @@ def draw_panel(ax, runs, xlim, add_planck_shoes=True, lvk_band=True, hpd_lines=F
 
 
 # ── data ──────────────────────────────────────────────────────────────────────
-XAS = 'Results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3'
-S18 = 'Results/test_suite/s18__gw170817__imrphenomxas_nrtidalv3__baseline'
+XAS = 'results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3'
+S18 = 'results/test_suite/s18__gw170817__imrphenomxas_nrtidalv3__baseline'
 
 panel_a_specs = [
     (f'{XAS}__baseline__seed0000/samples.csv',

@@ -24,8 +24,8 @@ from _plot_utils import (
     OUT_DIR, RESULTS_DIR, COLORS, load_nested_csv, plot_h0_kde,
 )
 
-CSV_XAS_NRTV3   = 'Results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3__baseline__seed0000/samples.csv'
-CSV_TF2_LVK     = 'Results/gwtc1_phasemarg/PhaseMarg_Heterodyned_TaylorF2_local_psd-gwtc1_ref-gwtc1_baseline.csv'
+CSV_XAS_NRTV3   = 'results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3__baseline__seed0000/samples.csv'
+CSV_TF2_LVK     = 'results/gwtc1_phasemarg/PhaseMarg_Heterodyned_TaylorF2_local_psd-gwtc1_ref-gwtc1_baseline.csv'
 
 runs = []
 for csv, label, colour in [
