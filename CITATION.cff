@@ -7,6 +7,7 @@ authors:
     given-names: Ming
     affiliation: "Institute of Astronomy and St John's College, University of Cambridge (formerly); independent researcher"
     email: mhy32@cantab.ac.uk
+    orcid: "https://orcid.org/0009-0002-7298-7740"
   - family-names: Prathaban
     given-names: Metha
     affiliation: "Kavli Institute for Cosmology & Department of Physics, University of Cambridge"
@@ -32,6 +33,7 @@ preferred-citation:
   authors:
     - family-names: Yang
       given-names: Ming
+      orcid: "https://orcid.org/0009-0002-7298-7740"
     - family-names: Prathaban
       given-names: Metha
     - family-names: Yallup
