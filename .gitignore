@@ -29,7 +29,11 @@ venv/
 env/
 
 # Large data files that should NOT be committed via plain git
-# (use git-lfs or a Zenodo deposit for these):
-#   Results/test_suite/sNN__*/samples.csv  may be tens to hundreds of MB each;
-#   the .csv glob is left UN-ignored so smaller summary CSVs (e.g. nmcmc_sweep_summary.csv)
-#   still commit normally. Add explicit paths here when populating Results/.
+# (use Zenodo for these):
+#   results/test_suite/sNN__*/  — per-run nested-sampling chains (~100 MB each)
+#   results/GW170817_GWTC-1.hdf5  — LVK reference HDF5
+# The smaller summary CSVs (results/test_suite/*.csv directly under test_suite/)
+# remain committed because their typical size is ~1 KB.
+results/test_suite/s[0-9]*__*/
+results/GW170817_GWTC-1.hdf5
+results/**/IGWN-GWTC2p1-v2-*.h5

@@ -1,0 +1,4 @@
+run_id,variant,dL_median,H0_median,P_H0_gt_120,log_Z,sigma_log_Z
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0000,flatZ_modeB,23.149887585291694,129.9902678770534,0.6379264281480997,486.95,0.09
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000,flatZ_modeA,38.249815298294095,78.65708984562318,3.0607597836325497e-07,486.8,0.1
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0000,flatZ_refModeB,32.177117464073554,93.59081391666001,0.28119677378208163,486.48,0.09

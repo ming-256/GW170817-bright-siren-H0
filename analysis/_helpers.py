@@ -23,16 +23,9 @@ from typing import Iterator, Optional
 import numpy as np
 import pandas as pd
 
-# Paths in the standalone data/analysis release (this repo):
-#   <repo>/analysis/_helpers.py     this file
-#   <repo>/Results/test_suite/      nested-sampling-chain CSVs (populated by user)
-#   <repo>/analysis/run_catalog.csv catalog of runs (shipped with this repo)
-# The original project layout had this file three levels deeper inside
-# mnras_paper/test_suite/analysis/; the path constants below are
-# reset for the shallower layout of the standalone release.
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-TEST_SUITE_ROOT = os.path.abspath(os.path.dirname(__file__))
-RESULTS_ROOT = os.path.join(REPO_ROOT, "Results", "test_suite")
+TEST_SUITE_ROOT = os.path.join(REPO_ROOT, "results", "test_suite")
+RESULTS_ROOT = TEST_SUITE_ROOT
 CATALOG = os.path.join(TEST_SUITE_ROOT, "run_catalog.csv")
 
 
