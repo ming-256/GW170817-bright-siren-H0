@@ -1,0 +1,2 @@
+label,run_id,dl_lo,dl_hi,H0_MAP,H0_median,HPD68_lo,HPD68_hi,P_H0_gt_120,log_Z,sigma_log_Z,n_samples,dL_median
+Unrestricted,s14__gw170817__imrphenomxas_nrtidalv3__flatz__seed0000,10,75,70.5,87.62087628687848,64.21623829943009,103.55630663835784,0.15944099597139277,487.3,0.1,201500,34.355315024071565

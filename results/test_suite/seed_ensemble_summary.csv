@@ -1,0 +1,7 @@
+run_id,session,seed,dl_lo,dl_hi,ref,mode,log_Z,sigma_log_Z,H0_median,P_H0_gt_120,n_samples
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000,10,0,30,75,GWTC1,ModeA,486.8,0.1,78.65708984562318,3.0607597836325497e-07,200000
+s18__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0001,18,1,30,75,GWTC1,ModeA,486.71,0.09,78.61744108035393,3.0982678882986537e-06,200000
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0000,10,0,10,30,GWTC1,ModeB,486.95,0.09,129.9902678770534,0.6379264281480997,206000
+s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0001,18,1,10,30,GWTC1,ModeB,487.62,0.1,131.05485978259898,0.645932098755619,204500
+s10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0000,10,0,10,75,ModeB,Unrestricted,486.48,0.09,93.59081391666001,0.28119677378208163,206000
+s18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0001,18,1,10,75,ModeB,Unrestricted,487.52,0.09,94.8037896348768,0.3105449062013902,201500

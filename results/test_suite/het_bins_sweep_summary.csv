@@ -1,0 +1,4 @@
+run_id,n_bins,log_Z,sigma_log_Z,H0_median,P_H0_gt_120
+s09__gw170817__imrphenomd_nrtidalv2__baseline__nbins00251__seed0000,251,486.57,0.11,79.54081371160379,0.09889230745375574
+s09__gw170817__imrphenomd_nrtidalv2__baseline__nbins00501__seed0000,501,485.91,0.1,79.04466284174707,0.07826200799424787
+s09__gw170817__imrphenomd_nrtidalv2__baseline__nbins01001__seed0000,1001,485.75,0.1,79.77563852525273,0.10624841384068816

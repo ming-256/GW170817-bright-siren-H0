@@ -1,0 +1,44 @@
+cff-version: 1.2.0
+title: "GW170817 bright-siren H_0: data and analysis release"
+message: "If you use this software or its derived summaries, please cite the linked MNRAS paper."
+type: software
+authors:
+  - family-names: Yang
+    given-names: Ming
+    affiliation: "Institute of Astronomy and St John's College, University of Cambridge (formerly); independent researcher"
+    email: mhy32@cantab.ac.uk
+  - family-names: Prathaban
+    given-names: Metha
+    affiliation: "Kavli Institute for Cosmology & Department of Physics, University of Cambridge"
+  - family-names: Yallup
+    given-names: David
+    affiliation: "Institute of Astronomy & Kavli Institute for Cosmology, University of Cambridge"
+  - family-names: Handley
+    given-names: Will
+    affiliation: "Institute of Astronomy & Kavli Institute for Cosmology, University of Cambridge"
+url: "https://github.com/ming-256/GW170817-bright-siren-H0"
+repository-code: "https://github.com/ming-256/GW170817-bright-siren-H0"
+license: MIT
+keywords:
+  - gravitational waves
+  - nested sampling
+  - Hubble constant
+  - bright sirens
+  - GW170817
+  - reproducibility
+  - prior sensitivity
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Yang
+      given-names: Ming
+    - family-names: Prathaban
+      given-names: Metha
+    - family-names: Yallup
+      given-names: David
+    - family-names: Handley
+      given-names: Will
+  title: "Rapid Hubble constant inference from GW170817 using GPU-accelerated nested sampling: prior sensitivity and the limits of post-hoc reweighting"
+  journal: "Monthly Notices of the Royal Astronomical Society"
+  year: 2026
+  notes: "Submitted; arXiv ID and DOI to be added on acceptance."

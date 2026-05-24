@@ -1,0 +1,7 @@
+variant,run,N_samples,n_eff,efficiency_pct,pareto_khat,rw_bootstrap_q025,rw_bootstrap_q975,direct_minus_rw_sigma
+Baseline ($\pi(d_L)\propto d_L^{2}$),s14__gw170817__imrphenomxas_nrtidalv3__baseline__seed0000,172611,30695.37006134065,17.7829744693795,,,,
+"Uniform-in-$d_L$, direct",s14__gw170817__imrphenomxas_nrtidalv3__flatz__seed0000,193797,37022.30096926849,19.103650195446,,,,
+"Uniform-in-$d_L$, reweighted",s14__gw170817__imrphenomxas_nrtidalv3__reweighted_flatz__seed0000,172507,27317.163857692547,15.835394423236474,0.683365368845942,0.03743690765823015,0.04186789643777915,101.80628370261955
+"$\sigma_{v_p}=250\,\mathrm{km\,s^{-1}}$",s14__gw170817__imrphenomxas_nrtidalv3__vp250__seed0000,200323,36464.34905889282,18.20277704451951,,,,
+"$\langle v_p\rangle=215\,\mathrm{km\,s^{-1}}$",s18__gw170817__imrphenomxas_nrtidalv3__baseline__vpmean215__seed0000,172568,30714.576873512997,17.79853557641799,,,,
+"$\langle v_p\rangle=405\,\mathrm{km\,s^{-1}}$",s18__gw170817__imrphenomxas_nrtidalv3__baseline__vpmean405__seed0000,172621,30541.66889022651,17.692904623554785,,,,

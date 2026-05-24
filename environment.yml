@@ -1,0 +1,15 @@
+name: gw170817-bright-siren-H0
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - numpy>=2.0
+  - scipy>=1.13
+  - pandas>=2.2
+  - matplotlib>=3.9
+  - h5py>=3.10
+  - pip:
+      - anesthetic>=2.8
+# Only required if you intend to regenerate the LaTeX PDF locally:
+# install TeXLive 2023+ separately, then run `latexmk -pdf paper/main.tex`.
