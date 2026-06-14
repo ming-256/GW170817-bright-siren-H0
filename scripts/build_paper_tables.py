@@ -130,19 +130,19 @@ TABLE6_BIMODALITY = [
     ('Unrestricted',    '$[10,75]$',
         's10__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0000'),
     # seed=1 independent verification (s18)
-    ('Mode A (s=1)',    '$[30,75]$',
+    ('Mode A',          '$[30,75]$',
         's18__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0001'),
-    ('Mode B (s=1)',    '$[10,30]$',
+    ('Mode B',          '$[10,30]$',
         's18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-30__refGWTC1__seed0001'),
-    ('Unrestr. (s=1)', '$[10,75]$',
+    ('Unrestricted',    '$[10,75]$',
         's18__gw170817__imrphenomd_nrtidalv2__flatz__dL10-75__refModeB__seed0001'),
 ]
 
 # GW150914 validation: Table 1
 GW150914_RUNS = [
-    ('this work, \\XPHM\\ ($n_{\\rm live}=8000$)',
+    ('\\XPHM\\ ($n_{\\rm live}=8000$)',
         's17a__gw150914__imrphenomxphm__nlive8000_mcmc160__seed0000'),
-    ('this work, \\XPHM\\ ($n_{\\rm live}=5000$, cross-check)',
+    ('\\XPHM\\ ($n_{\\rm live}=5000$, cross-check)',
         's06__gw150914__imrphenomxphm__lvkbounds__seed0000'),
 ]
 

@@ -211,6 +211,8 @@ The central scientific result of this paper is a direct comparison between the u
   \label{tab:h0priors}
   \begin{tabular}{lcccccc}
     \toprule
+    & \multicolumn{3}{c}{$\hzero~(\kmsmpc)$} & & & \\
+    \cmidrule(lr){2-4}
     Variant & MAP & median & 68\% HPD & $P(\hzero>120)$ & $P(\hzero>150)$ & $\ln Z$ \\
     \midrule
 \input{tables/table5_prior_sensitivity.tex}
@@ -274,7 +276,7 @@ Figure~\ref{fig:bimodality} shows the joint $(\dL,\iota)$ posterior under the un
 
 \begin{table*}
   \centering
-  \caption{Local evidences, MAP $\hzero$ values, and sample-derived 68 per cent HPDs for the $\dL$-restricted uniform-in-$d_L$ runs. Upper block: seed=0 (primary); lower block: independent seed=1 replication. The Mode-B/Mode-A Bayes factor includes a $\ln(20/45)$ correction for the difference in restricted-prior $\dL$ volumes.}
+  \caption{Local evidences, MAP $\hzero$ values, and sample-derived 68 per cent HPDs for the $\dL$-restricted uniform-in-$d_L$ runs; the lower block is an independent replication. The Mode-B/Mode-A Bayes factor includes a $\ln(20/45)$ correction for the difference in restricted-prior $\dL$ volumes.}
   \label{tab:bimodality}
   \begin{tabular}{lccccc}
     \toprule
@@ -305,7 +307,7 @@ Figure~\ref{fig:waveform-h0} shows the GW170817 \hzero\ posterior under the LVK-
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{H0_waveform_comparison.pdf}
-  \caption{GW170817 \hzero\ posterior for \IMRX\ (primary) and \TF\ (family check) on the LVK-matched prior, shown as Silverman-bandwidth kernel-density estimates; the sample-derived 68 and 95 per cent HPDs (computed from the weighted samples, no KDE) are reported in Table~\ref{tab:waveform-h0}. The Planck $\Lambda$CDM and SH0ES distance-ladder values are shown for context.}
+  \caption{GW170817 \hzero\ posterior for \IMRX\ and \TF\ on the LVK-matched prior, shown as Silverman-bandwidth kernel-density estimates; the sample-derived 68 and 95 per cent HPDs (computed from the weighted samples, no KDE) are reported in Table~\ref{tab:waveform-h0}. The Planck $\Lambda$CDM and SH0ES distance-ladder values are shown for context.}
   \label{fig:waveform-h0}
 \end{figure}
 
@@ -340,7 +342,7 @@ The primary heterodyned GW170817 \hzero\ analysis with \IMRX\ and $n_{\rm live}=
 \subsection{Heterodyne speedup and live-point scaling}
 \label{sec:speedup}
 
-The heterodyned (relative-binning) likelihood is the enabling approximation: at matched live-point count it runs ${\approx}30$--$70\times$ faster than the unheterodyned reference over $n_{\rm live}=500$--$2500$, with the relative-binning approximation accounting for the bulk of the reduction and the GPU saturation provided by \bjns\ layered on top. The heterodyned $\hzero^{\rm MAP}$ is stable across $n_{\rm live}\geq 2500$ to within $1\kmsmpc$ and $\ln Z$ to within $\pm 0.2$ over the same range, so the $n_{\rm live}=5000$ configuration adopted for the science runs sits in the converged regime; live-point counts up to $10^{5}$ remain accessible on a single GPU, with the $n_{\rm live}=10^{5}$ heterodyned run completing in roughly four hours. The full live-point scaling characterisation of the pipeline is reported by \citet{Prathaban2025GPUSpeed}; the GW170817-specific timings underlying the speedup quoted here are tabulated in \texttt{results/scaling\_study/scaling\_summary\_full.csv} in this data release.
+The heterodyned (relative-binning) likelihood is the enabling approximation: at matched live-point count it runs $31\times$ faster than the unheterodyned reference at $n_{\rm live}=500$, rising to $68\times$ at $n_{\rm live}=2500$ as the unheterodyned cost scales less favourably, with the relative-binning approximation accounting for the bulk of the reduction and the GPU saturation provided by \bjns\ layered on top. The heterodyned $\hzero^{\rm MAP}$ is stable across $n_{\rm live}\geq 2500$ to within $1\kmsmpc$ and $\ln Z$ to within $\pm 0.2$ over the same range, so the $n_{\rm live}=5000$ configuration adopted for the science runs sits in the converged regime; live-point counts up to $10^{5}$ remain accessible on a single GPU, with the $n_{\rm live}=10^{5}$ heterodyned run completing in roughly four hours. The full live-point scaling characterisation of the pipeline is reported by \citet{Prathaban2025GPUSpeed}; the GW170817-specific timings underlying the speedup quoted here are tabulated in \texttt{results/scaling\_study/scaling\_summary\_full.csv} in this data release.
 
 \subsection{Scope of the performance claim}
 

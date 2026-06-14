@@ -58,8 +58,8 @@ def main():
     wt = np.asarray(s.get_weights(), dtype=float)
 
     body = ''
-    body += _row(r'\IMRX\ (primary)', xi, wi, lnzi, dlnzi)
-    body += _row(r'\TF\ (family check)', xt, wt, TF_LNZ, TF_DLNZ)
+    body += _row(r'\IMRX', xi, wi, lnzi, dlnzi)
+    body += _row(r'\TF', xt, wt, TF_LNZ, TF_DLNZ)
     body += '    \\bottomrule\n'
 
     with open(OUT, 'w') as f:
