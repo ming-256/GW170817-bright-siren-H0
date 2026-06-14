@@ -22,7 +22,7 @@ inventory CSV in the main project repository.
 
 | Path | Role | Source / generator |
 |------|------|-------------------|
-| `paper/main.tex` | manuscript source (412 lines) | canonical version of `mnras_paper/main.tex` |
+| `paper/main.tex` | manuscript source (409 lines) | canonical version of `mnras_paper/main.tex` |
 | `paper/references.bib` | bibliography (45 entries) | canonical version of `mnras_paper/references.bib` |
 | `paper/main.pdf` | built artefact (11 pages, 249-word abstract) | `latexmk -pdf paper/main.tex` |
 | `paper/figures/corner_GW150914_waveform_comparison.pdf` | Figure 1 | `scripts/plot_GW150914_waveform_comparison.py` + the s17a chain |
@@ -31,7 +31,7 @@ inventory CSV in the main project repository.
 | `paper/figures/bimodality.pdf` | Figure 4 | `scripts/plot_bimodality.py` + s10 IMR dL30-75 / dL10-30 / dL10-75-refModeB |
 | `paper/figures/H0_waveform_comparison.pdf` | Figure 5 | `scripts/plot_H0_GW170817_waveform_comparison.py` + s14 IMRX + TF2 baseline |
 | `paper/figures/corner_GW170817_waveform_comparison.pdf` | Figure 6 | `scripts/plot_GW170817_waveform_corner.py` + s14 IMRX + TF2 baseline + LVK GWTC-1 HDF5 |
-| `paper/figures/scaling_study_full.pdf` | Figure 7 | `scripts/plot_scaling_full.py` + s13 n_live sweep + s07 LVK-bounds anchor |
+| `paper/figures/scaling_study_full.pdf` | supplementary scaling plot (no longer a paper figure; retained for reproducibility) | `scripts/plot_scaling_full.py` + s13 n_live sweep + s07 LVK-bounds anchor |
 | `paper/tables/table1_gw150914.tex` | Table 1 (GW150914 validation) | `scripts/build_paper_tables.py` |
 | `paper/tables/tableW_waveform.tex` | Table 4 (cross-waveform H₀) | `scripts/build_waveform_table.py` |
 | `paper/tables/table5_prior_sensitivity.tex` | Table 5 (prior-sensitivity sweep) | `scripts/build_paper_tables.py` |
@@ -50,7 +50,7 @@ inventory CSV in the main project repository.
 | `scripts/plot_bimodality.py` | Figure 4 |
 | `scripts/plot_H0_GW170817_waveform_comparison.py` | Figure 5 |
 | `scripts/plot_GW170817_waveform_corner.py` | Figure 6 |
-| `scripts/plot_scaling_full.py` | Figure 7 |
+| `scripts/plot_scaling_full.py` | supplementary scaling plot (no longer a paper figure) |
 
 ## `analysis/` — per-sweep aggregators and referee-response diagnostics
 

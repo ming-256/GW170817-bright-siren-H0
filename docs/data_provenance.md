@@ -44,7 +44,7 @@ LaTeX `\input` fragments built by `build_paper_tables.py`. Mirrored to
 
 Mirror of `paper/figures/`. Both the canonical (`paper/figures/`) and
 the `results/gwtc1_phasemarg/plots/` copies are byte-identical for the
-seven figures cited by the paper.
+six figures cited by the paper, plus the supplementary scaling plot.
 
 ## `results/test_suite/`
 

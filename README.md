@@ -73,7 +73,7 @@ bash regenerate.sh
 `regenerate.sh` produces
 
 - 4 table `.tex` files in `results/gwtc1_phasemarg/` (mirrored to `paper/tables/`)
-- 7 figure PDFs in `results/gwtc1_phasemarg/plots/` (mirrored to `paper/figures/`)
+- 6 paper-figure PDFs, plus the supplementary `scaling_study_full.pdf`, in `results/gwtc1_phasemarg/plots/` (mirrored to `paper/figures/`)
 - `paper/main.pdf` — the 11-page submitted MNRAS manuscript
 
 ## Chain regeneration (GPU only)

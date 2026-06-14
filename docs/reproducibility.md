@@ -75,7 +75,8 @@ This runs (in order)
    `paper_tables.csv`, `paper_diagnostics.csv`, `evidence_table.csv`.
    Tables are mirrored from `results/gwtc1_phasemarg/` to
    `paper/tables/`.
-2. The 7 figure scripts, in order. PDFs land in
+2. The figure scripts (six paper figures plus the supplementary
+   `plot_scaling_full.py` scaling plot), in order. PDFs land in
    `results/gwtc1_phasemarg/plots/` and are then mirrored to
    `paper/figures/`. Figure 3
    (`scripts/compare_bimodality_waveforms.py`) writes its output
