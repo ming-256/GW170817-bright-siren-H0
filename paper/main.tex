@@ -222,7 +222,10 @@ The central scientific result of this paper is a direct comparison between the u
 
 \paragraph{Direct-vs-reweighted comparison.} The direct uniform-in-$d_L$ run leaves the posterior MAP unchanged at $70.5\kmsmpc$ but broadens the 68 per cent HPD on the high side from $87.6$ to $103.8\kmsmpc$, and raises the high-tail probability
 \begin{equation*}
-P(\hzero>120\kmsmpc) = 0.017 \quad\text{(baseline)}\quad \to \quad 0.159 \quad\text{(direct uniform-in-}d_L\text{)},
+\begin{gathered}
+P(\hzero>120\kmsmpc) = 0.017 \quad\text{(baseline)} \\
+\longrightarrow \quad 0.159 \quad\text{(direct uniform-in-}d_L\text{)} ,
+\end{gathered}
 \end{equation*}
 together with $P(\hzero>150\kmsmpc)$ from $<10^{-4}$ to $0.038$. The reweighted estimate captures a small fraction of this shift: $P(\hzero>120\kmsmpc)=0.041$, equivalent to
 \begin{equation}
@@ -305,7 +308,7 @@ Figure~\ref{fig:waveform-h0} shows the GW170817 \hzero\ posterior under the LVK-
   \label{fig:waveform-corner}
 \end{figure*}
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{GW170817 \hzero\ summaries for the two-waveform main set on the LVK-matched prior, $n_{\rm live}=5000$. MAP and sample-derived HPDs in $\kmsmpc$. The \IMRX\ row is the baseline run of Table~\ref{tab:h0priors}.}
   \label{tab:waveform-h0}
@@ -315,7 +318,7 @@ Figure~\ref{fig:waveform-h0} shows the GW170817 \hzero\ posterior under the LVK-
     \midrule
 \input{tables/tableW_waveform.tex}
   \end{tabular}
-\end{table}
+\end{table*}
 
 % ======================================================================
 \section{Performance and runtime studies}
