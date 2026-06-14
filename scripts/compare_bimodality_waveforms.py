@@ -107,7 +107,7 @@ def main():
 
     axes[0].set_ylabel(r"$\iota$ (rad)")
     fig.suptitle(
-        r"M4 cross-check: $(d_L,\iota)$ bimodality across the "
+        r"$(d_L,\iota)$ bimodality across the "
         r"NRTidalv2 $\to$ NRTidalv3 calibration",
     )
     fig.tight_layout()

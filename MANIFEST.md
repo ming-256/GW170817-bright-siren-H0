@@ -33,7 +33,7 @@ inventory CSV in the main project repository.
 | `paper/figures/corner_GW170817_waveform_comparison.pdf` | Figure 6 | `scripts/plot_GW170817_waveform_corner.py` + s14 IMRX + TF2 baseline + LVK GWTC-1 HDF5 |
 | `paper/figures/scaling_study_full.pdf` | Figure 7 | `scripts/plot_scaling_full.py` + s13 n_live sweep + s07 LVK-bounds anchor |
 | `paper/tables/table1_gw150914.tex` | Table 1 (GW150914 validation) | `scripts/build_paper_tables.py` |
-| `paper/tables/table4_cross_waveform.tex` | Table 4 (cross-waveform H₀) | `scripts/build_paper_tables.py` |
+| `paper/tables/tableW_waveform.tex` | Table 4 (cross-waveform H₀) | `scripts/build_waveform_table.py` |
 | `paper/tables/table5_prior_sensitivity.tex` | Table 5 (prior-sensitivity sweep) | `scripts/build_paper_tables.py` |
 | `paper/tables/table6_bimodality.tex` | Table 6 (bimodality) | `scripts/build_paper_tables.py` |
 
@@ -42,7 +42,8 @@ inventory CSV in the main project repository.
 | Path | Role |
 |------|------|
 | `scripts/_plot_utils.py` | shared plotting helpers (LaTeX setup, palette, HPD/MAP, LVK HDF5 loader) |
-| `scripts/build_paper_tables.py` | canonical table & summary generator; emits `paper/tables/*.tex` + `results/gwtc1_phasemarg/{paper_tables,paper_diagnostics}.csv` |
+| `scripts/build_paper_tables.py` | canonical table & summary generator (Tables 1/5/6); emits `paper/tables/*.tex` + `results/gwtc1_phasemarg/{paper_tables,paper_diagnostics}.csv` |
+| `scripts/build_waveform_table.py` | cross-waveform table (Table 4); emits `results/gwtc1_phasemarg/tableW_waveform.tex` |
 | `scripts/plot_GW150914_waveform_comparison.py` | Figure 1 |
 | `scripts/plot_H0_prior_sensitivity.py` | Figure 2 |
 | `scripts/compare_bimodality_waveforms.py` | Figure 3 |

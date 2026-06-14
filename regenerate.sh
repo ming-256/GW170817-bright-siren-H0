@@ -29,10 +29,11 @@ mkdir -p paper/figures paper/tables
 mkdir -p results/gwtc1_phasemarg/plots
 
 run_tables() {
-    echo "--- Tables (build_paper_tables.py) ---"
+    echo "--- Tables (build_paper_tables.py + build_waveform_table.py) ---"
     $PY scripts/build_paper_tables.py
+    $PY scripts/build_waveform_table.py
     # Mirror the .tex includes from results/ to paper/tables/
-    for t in table1_gw150914 table4_cross_waveform table5_prior_sensitivity table6_bimodality; do
+    for t in table1_gw150914 table5_prior_sensitivity table6_bimodality tableW_waveform; do
         cp -f "results/gwtc1_phasemarg/${t}.tex"  "paper/tables/${t}.tex"
     done
 }
