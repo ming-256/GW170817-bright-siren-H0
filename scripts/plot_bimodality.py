@@ -87,8 +87,8 @@ ax = axes[1]
 _h0_eval = np.linspace(40, 230, 1000)
 _trapz = getattr(np, 'trapezoid', getattr(np, 'trapz', None))
 for x, w, label, col in [
-    (h0A, wA, r'Mode A ($d_L\in[30,75]$\,Mpc)', MODE_A_COL),
-    (h0B, wB, r'Mode B ($d_L\in[10,30]$\,Mpc)', MODE_B_COL),
+    (h0A, wA, r'Mode A ($d_L\in[30,75]\,\mathrm{Mpc}$)', MODE_A_COL),
+    (h0B, wB, r'Mode B ($d_L\in[10,30]\,\mathrm{Mpc}$)', MODE_B_COL),
     (h0F, wF, r'Unrestricted',                   COMBINED_COL),
 ]:
     if x is None: continue
