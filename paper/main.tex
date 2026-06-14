@@ -24,7 +24,7 @@
 % paper_knowledge_base/result_link_index.md.
 % ======================================================================
 
-\documentclass[fleqn,usenatbib]{mnras}
+\documentclass[usenatbib]{mnras}
 
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath}
@@ -128,10 +128,12 @@ All heterodyned runs analytically marginalise over the coalescence phase, so the
 \subsection{Joint Hubble-constant likelihood}
 
 We sample the Hubble constant jointly with the gravitational-wave source parameters rather than post-processing the \dL\ marginal. The GW170817 host galaxy NGC~4993 contributes a CMB-frame recessional velocity $v_{\rm r}=3327\kms$ with $\sigma_{v_{\rm r}}=72\kms$ and a Hubble-flow peculiar-velocity estimate $\langle v_{p}\rangle=310\kms$ with $\sigmavp=150\kms$. Both enter as Gaussian likelihood factors,
-\begin{equation}
-\ln\mathcal{L}_{\rm tot}(\theta,\hzero,v_{p}) = \ln\mathcal{L}_{\rm GW}(d\mid\theta) + \ln\mathcal{N}\!\left(v_{\rm r}\,;\,\hzero\,\dL+v_{p},\,\sigma_{v_{\rm r}}\right) + \ln\mathcal{N}\!\left(\langle v_{p}\rangle\,;\,v_{p},\,\sigmavp\right),
+\begin{multline}
+\ln\mathcal{L}_{\rm tot}(\theta,\hzero,v_{p}) = \ln\mathcal{L}_{\rm GW}(d\mid\theta) \\
++ \ln\mathcal{N}\!\left(v_{\rm r}\,;\,\hzero\,\dL+v_{p},\,\sigma_{v_{\rm r}}\right) \\
++ \ln\mathcal{N}\!\left(\langle v_{p}\rangle\,;\,v_{p},\,\sigmavp\right),
 \label{eq:h0likelihood}
-\end{equation}
+\end{multline}
 following \citet{Abbott2017H0}. Equation~\ref{eq:h0likelihood} carries no $1/N_{\rm s}(\hzero)$ GW-detection selection factor because, for every prior variant considered in this work, $\pi(\dL\mid\hzero)$ is independent of \hzero\ and the selection normalisation $N_{\rm s}=\int P_{\rm det}(\dL)\,\pi(\dL\mid\hzero)\,d\dL$ is therefore an \hzero-independent constant that cancels from the joint posterior; we return to this point with the prior definitions in Section~\ref{sec:priors}.
 
 \subsection{Priors and prior variants}
@@ -145,7 +147,7 @@ We consider three prior variants in addition to the baseline:
     \item \emph{Reweighted uniform-in-$d_L$}: the baseline posterior samples reweighted by the analytic ratio of the uniform-in-$d_L$ to volumetric \dL\ priors.
     \item \emph{Enlarged peculiar-velocity uncertainty}: identical to the baseline except $\sigmavp=250\kms$.
 \end{enumerate}
-The direct and reweighted uniform-in-$d_L$ posteriors share the same target prior; they differ only in whether the prior is imposed during sampling or applied post-hoc. At GW170817's source redshift ($z\lesssim 0.02$), the uniform-in-$d_L$ prior is numerically equivalent within one per cent to the ``flat-in-redshift'' variant analysed by \citet{Abbott2017H0} over the same distance range; we adopt the literal uniform-in-$d_L$ form because it is what the inference pipeline imposes ($\pi(\dL)$ is a fixed density on the observable \dL, with no \hzero-dependent window). Consequently $\pi(\dL\mid\hzero)$ has no \hzero-dependence for any of the three prior variants, so the GW-detection selection normalisation $N_{\rm s}(\hzero)$ of equation~\ref{eq:h0likelihood} is constant in \hzero\ and cancels from the joint posterior, exactly as for the volumetric baseline.\footnote{We verified this property by direct evaluation of $N_{\rm s}(\hzero)=\int P_{\rm det}(\dL)\,\pi(\dL\mid\hzero)\,d\dL$ over the LVK-matched $\hzero\in[45,250]\kmsmpc$ prior with a Finn--Chernoff antenna-pattern detection model \citep{FinnChernoff1993}: $N_{\rm s}$ is \hzero-independent to machine precision for every horizon distance tested ($D_{\rm h}\in\{100,150,220\}\,\rm Mpc$, spanning the published O2 BNS range to inspiral horizon; \citealp{LVK2020Prospects}). The supporting calculation is in \texttt{mnras\_paper/test\_suite/analysis/analyze\_selection\_term.py} in the public repository.}
+The direct and reweighted uniform-in-$d_L$ posteriors share the same target prior; they differ only in whether the prior is imposed during sampling or applied post-hoc. At GW170817's source redshift ($z\lesssim 0.02$), the uniform-in-$d_L$ prior is numerically equivalent within one per cent to the ``flat-in-redshift'' variant analysed by \citet{Abbott2017H0} over the same distance range; we adopt the literal uniform-in-$d_L$ form because it is what the inference pipeline imposes ($\pi(\dL)$ is a fixed density on the observable \dL, with no \hzero-dependent window). Consequently $\pi(\dL\mid\hzero)$ has no \hzero-dependence for any of the three prior variants, so the GW-detection selection normalisation $N_{\rm s}(\hzero)$ of equation~\ref{eq:h0likelihood} is constant in \hzero\ and cancels from the joint posterior, exactly as for the volumetric baseline.\footnote{We verified this property by direct evaluation of $N_{\rm s}(\hzero)=\int P_{\rm det}(\dL)\,\pi(\dL\mid\hzero)\,d\dL$ over the LVK-matched $\hzero\in[45,250]\kmsmpc$ prior with a Finn--Chernoff antenna-pattern detection model \citep{FinnChernoff1993}: $N_{\rm s}$ is \hzero-independent to machine precision for every horizon distance tested ($D_{\rm h}\in\{100,150,220\}\,\rm Mpc$, spanning the published O2 BNS range to inspiral horizon; \citealp{LVK2020Prospects}). The supporting calculation is in \texttt{analyze\_selection\_term.py} in the public repository.}
 
 \subsection{Waveforms}
 \label{sec:waveforms}
@@ -168,7 +170,7 @@ We summarise one-dimensional marginals by the maximum a posteriori (MAP) value a
 
 We validate the pipeline on the binary-black-hole event GW150914 \citep{Abbott2016GW150914}, which has a short signal and well-established public posteriors. We analyse the public GW150914 strain data and PSDs from the LVK GWTC-2.1 Zenodo deposit \citep{GWTC2p1_GW150914_Zenodo} with \XPHM, using the same heterodyned sampler as for GW170817 with phase marginalisation; for this validation run we increase the sampler settings to $n_{\rm live}=8000$ with $n_{\rm mcmc}=160$ slice steps per update, so that the comparison is not sampler-limited at the short-signal $n_{\rm dim}$. Table~\ref{tab:gw150914} compares our recovered parameters with the LVK GWTC-2.1 public PE \citep{Abbott2021GWTC2p1,GWTC2p1_GW150914_Zenodo}; the corresponding corner overlay is shown in Figure~\ref{fig:gw150914}. The chirp mass, mass ratio, luminosity distance, and inclination all agree with the LVK reference; in particular, the recovered chirp mass agrees to ${\sim}0.2\,\%$ ($\mathcal{M}_c=30.35$ vs $30.4\,M_\odot$) and $d_{L}^{\rm med}=455\,\rm Mpc$ for our \XPHM\ run is within ${\sim}8\,\rm Mpc$ of the LVK value of $463\,\rm Mpc$. The 1$\sigma$ widths match closely: $\sigma(\mathcal{M}_c)=1.02$ vs $1.00\,M_\odot$, $\sigma(d_L)=84$ vs $85\,\rm Mpc$, $\sigma(q)=0.10$ vs $0.11$, and $\sigma(\iota)=0.41$ vs $0.35\,\rm rad$ (ratios $1.02$, $0.99$, $0.89$, $1.17$); the largest residual is on the precession-sensitive $\iota$. We use a component-mass prior uniform on $[5,100]\,M_\odot$ that encompasses the LVK GWTC-2.1 $[10,80]\,M_\odot$ range, with no posterior mass near either boundary; the validation therefore reproduces the LVK posteriors within the recovered support.
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{GW150914 validation: median values of the principal source parameters for our heterodyned \XPHM\ run, with a $n_{\rm live}=5000$ cross-check. The LVK GWTC-2.1 \XPHM\ public PE \citep{Abbott2021GWTC2p1,GWTC2p1_GW150914_Zenodo} reports $\mathcal{M}_c\approx 30.4\,M_\odot$, $q\approx 0.85$, $d_L\approx 463\,\rm Mpc$, $\iota\approx 2.62\,\rm rad$ for direct comparison.}
   \label{tab:gw150914}
@@ -178,7 +180,7 @@ We validate the pipeline on the binary-black-hole event GW150914 \citep{Abbott20
     \midrule
 \input{tables/table1_gw150914.tex}
   \end{tabular}
-\end{table}
+\end{table*}
 
 \begin{figure}
   \centering
