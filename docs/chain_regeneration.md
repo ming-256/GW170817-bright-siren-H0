@@ -17,6 +17,27 @@ end on a single NVIDIA A100 (40 GB) GPU using the public stack:
   (`Data`, `PowerSpectrum`). jim's likelihood and flowMC sampler are
   not used; the nested-sampling engine is BlackJAX-NS.
 
+## Software versions
+
+The table below records the versions used to produce the paper's 17 chains.
+Commit hashes for the GW-JAX-Team packages are not pinned in this repo
+(no lockfile was captured at run time); the version tags are as declared in
+the `GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves` README.
+If you need exact provenance, check the git tags `v0.0.9` and `v0.3.0` in
+the respective repos.
+
+| Package | Source | Version used for paper | Recommended for new runs |
+|---------|--------|------------------------|--------------------------|
+| ripple | https://github.com/GW-JAX-Team/ripple | v0.0.9 | latest stable release |
+| jim (`jimgw`) | https://github.com/GW-JAX-Team/jim | v0.3.0 | latest stable release |
+| BlackJAX-NS | https://github.com/handley-lab/blackjax (`nested_sampling` branch) | commit at time of runs (hash not recorded) | latest `nested_sampling` or stable release |
+| flowMC | https://github.com/GW-JAX-Team/flowMC | v0.4.5 (jim dependency; not directly used) | as required by jim |
+
+**For new runs:** install the latest stable releases of ripple and jim first;
+the GW-JAX-Team packages evolve quickly and newer versions are likely to be
+faster and more accurate. Fall back to the tagged versions above only if
+you encounter API incompatibilities with the run scripts.
+
 ## Pre-baked alternative
 
 For reproduction of figures and tables only, the pre-baked chains live
