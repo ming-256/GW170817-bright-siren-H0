@@ -7,9 +7,15 @@ end on a single NVIDIA A100 (40 GB) GPU using the public stack:
   sampler that drives nested sampling on the GPU.
 - The Prathaban et al. (2025) heterodyned-likelihood kernel — a JAX
   implementation of relative binning for compact-binary mergers.
-- [Ripple](https://github.com/tedwards2412/ripple) — the JAX waveform
-  library (IMRPhenomD_NRTidalv2, IMRPhenomXAS_NRTidalv3,
-  IMRPhenomXPHM, TaylorF2 family).
+- [ripple](https://github.com/GW-JAX-Team/ripple) (GW-JAX-Team fork, v0.0.9) — the JAX
+  waveform library (IMRPhenomD\_NRTidalv2, IMRPhenomXAS\_NRTidalv3,
+  IMRPhenomXPHM, TaylorF2). The IMRPhenomXAS\_NRTidalv3 implementation
+  is by Robin Chan. Accessed via jim's waveform-wrapper classes.
+- [jim](https://github.com/GW-JAX-Team/jim) (`jimgw` v0.3.0) — waveform-wrapper
+  classes (`RippleIMRPhenomXAS_NRTidalv3`, etc.), detector response
+  (`get_H1/L1/V1`, `fd_response`), and data/PSD ingestion
+  (`Data`, `PowerSpectrum`). jim's likelihood and flowMC sampler are
+  not used; the nested-sampling engine is BlackJAX-NS.
 
 ## Pre-baked alternative
 
