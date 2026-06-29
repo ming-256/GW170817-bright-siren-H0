@@ -116,6 +116,23 @@ the expected wall-clock per run. As a budget guide:
 - GW150914 PE data release — [Zenodo 10.5281/zenodo.6513631](https://doi.org/10.5281/zenodo.6513631) (LVK GWTC-2.1)
 - All chains for this paper — [Zenodo DOI: TODO](https://doi.org/TODO)
 
+## Software
+
+This analysis builds on the public JAX gravitational-wave stack. If you
+reuse this code, please link/cite the upstream packages:
+
+- [ripple](https://github.com/GW-JAX-Team/ripple) (GW-JAX-Team fork) —
+  differentiable waveforms (IMRPhenomXAS_NRTidalv3, IMRPhenomD_NRTidalv2,
+  TaylorF2, IMRPhenomXPHM); the IMRPhenomXAS_NRTidalv3 implementation is
+  by Robin Chan.
+- [jim](https://github.com/GW-JAX-Team/jim) (`jimgw`) — waveform-wrapper,
+  detector-response, and data-handling utilities (our likelihood, priors,
+  and nested sampler are our own; see the paper).
+- [BlackJAX-NS](https://github.com/handley-lab/blackjax) — the GPU-native
+  nested-sampling kernel.
+
+Pinned versions are listed in `docs/chain_regeneration.md`.
+
 ## Hardware requirements
 
 - **Tables + figures + PDF build (CPU only):** any modern laptop;
