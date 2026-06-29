@@ -16,13 +16,12 @@
 #   - All Appendix-A robustness sweeps (~10 runs):              ~6 h
 #   - All 17 cited runs in one batch:                           ~12-15 h
 #
-# This script is a stub.  The chain CSVs are also available pre-baked on
-# the companion Zenodo deposit (DOI: TODO); for read-only reproduction
-# of the figures/tables, download and unpack them into
-# results/test_suite/ and then run regenerate.sh.
+# This script is a stub.  The chains are not redistributed; regenerate
+# them on a GPU (see docs/chain_regeneration.md) into results/test_suite/
+# and then run regenerate.sh to rebuild the figures/tables.
 
 set -euo pipefail
 echo "Chain regeneration is GPU-bound and not redistributed in-band."
 echo "See docs/chain_regeneration.md for the per-run BlackJAX-NS invocation,"
-echo "the Zenodo bundle URL, and per-run wall-clock budgets."
+echo "and per-run wall-clock budgets."
 exit 1

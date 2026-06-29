@@ -68,7 +68,7 @@ inventory CSV in the main project repository.
 | `analysis/analyze_psis_khat.py` | PSIS k̂ + bootstrap-bias diagnostic (§4.1) |
 | `analysis/compile_test_suite_report.py` | end-to-end test-suite report builder |
 
-## `results/` — derived summaries (chains live on Zenodo)
+## `results/` — derived summaries (raw chains not redistributed)
 
 | Path | Role |
 |------|------|
@@ -90,7 +90,7 @@ inventory CSV in the main project repository.
 | `results/test_suite/seed_ensemble_summary.csv` | per-seed ln Z scatter for the bimodality runs |
 | `results/test_suite/seed_ensemble_bayes_factor.csv` | per-seed ln 𝓑(B/A) with the ln(20/45) correction |
 | `results/test_suite/selection_term_Ns.csv` | N_s(H₀) for the as-implemented and the hypothetical flat-in-z priors |
-| `results/test_suite/sNN__*/samples.csv` | NS chains — NOT redistributed; deposit on Zenodo. See `docs/chain_regeneration.md`. |
+| `results/test_suite/sNN__*/samples.csv` | NS chains — NOT redistributed; regenerable, see `docs/chain_regeneration.md`. |
 
 ## `docs/`
 

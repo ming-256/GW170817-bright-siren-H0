@@ -38,10 +38,11 @@ the GW-JAX-Team packages evolve quickly and newer versions are likely to be
 faster and more accurate. Fall back to the tagged versions above only if
 you encounter API incompatibilities with the run scripts.
 
-## Pre-baked alternative
+## Reproducing figures and tables only
 
-For reproduction of figures and tables only, the pre-baked chains live
-on Zenodo (DOI: TODO). Download once and skip this entire document.
+The chains are not redistributed as a pre-baked download. To rebuild the
+paper's figures and tables, regenerate the chains with the steps above
+(or request them from the authors), then run `regenerate.sh`.
 
 ## Per-run wall-clock
 

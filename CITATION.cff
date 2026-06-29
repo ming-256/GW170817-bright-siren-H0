@@ -19,6 +19,7 @@ authors:
     affiliation: "Institute of Astronomy & Kavli Institute for Cosmology, University of Cambridge"
 url: "https://github.com/ming-256/GW170817-bright-siren-H0"
 repository-code: "https://github.com/ming-256/GW170817-bright-siren-H0"
+doi: "10.5281/zenodo.21038511"
 license: MIT
 keywords:
   - gravitational waves

@@ -1,8 +1,9 @@
 # Reproducibility — fresh-clone → main.pdf in ~3 min
 
 A clean reproduction of every numerical claim, table, and figure in the
-paper, from this repository alone (plus a Zenodo download of the chain
-CSVs), on a CPU-only laptop.
+paper from this repository on a CPU-only laptop, once the nested-sampling
+chains are in place (they are not redistributed — regenerate them per §2
+or request them from the authors).
 
 ## 1. Environment
 
@@ -18,12 +19,12 @@ The environment pins Python 3.12 and the package versions tested at
 submission time (numpy ≥ 2.0, scipy ≥ 1.13, pandas ≥ 2.2, matplotlib ≥ 3.9,
 h5py ≥ 3.10, anesthetic ≥ 2.8).
 
-## 2. Chain bundle
+## 2. Chains
 
-The 17 nested-sampling chains the paper cites are ~5 GB combined and
-live on Zenodo (DOI: TODO).  Download the bundle, unzip, and place
-the per-run directories under `results/test_suite/` so that the
-layout becomes:
+The 17 nested-sampling chains the paper cites (~5 GB combined) are **not
+redistributed**; regenerate them with `run_chains.sh` (GPU required; see
+`docs/chain_regeneration.md`). The per-run directories land under
+`results/test_suite/` with the layout:
 
 ```
 results/test_suite/
@@ -31,9 +32,9 @@ results/test_suite/
 ├── bimodality_summary.csv                 # already in git
 ├── ...                                    # already in git
 ├── s07__gw170817__imrphenomxas_nrtidalv3__baseline_lvkbounds__seed0000/
-│   ├── samples.csv                        # from Zenodo
-│   ├── sampler.log                        # from Zenodo
-│   └── config.json                        # from Zenodo
+│   ├── samples.csv                        # regenerated
+│   ├── sampler.log                        # regenerated
+│   └── config.json                        # regenerated
 ├── s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000/
 │   └── ...
 ├── s14__gw170817__imrphenomxas_nrtidalv3__baseline__seed0000/

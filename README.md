@@ -11,10 +11,12 @@ It contains the analysis scripts, run catalogue, derived summary tables,
 and figure- and table-generation code needed to reproduce every numerical
 claim and every figure in the paper. The nested-sampling **chains
 themselves are not committed here** — each individual `samples.csv` is
-~100 MB and the full set runs to several GB; they live on the companion
-Zenodo deposit (DOI: TODO) and can be regenerated from the public LVK
-strain data with the [BlackJAX-NS](https://github.com/handley-lab/blackjax)
-sampler and the heterodyned-likelihood kernel of Prathaban et al. (2025).
+~100 MB and the full set runs to several GB; they are not redistributed,
+but can be regenerated from the public LVK strain data with the
+[BlackJAX-NS](https://github.com/handley-lab/blackjax) sampler and the
+heterodyned-likelihood kernel of Prathaban et al. (2025). An archival
+snapshot of this repository is on Zenodo:
+[10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511).
 
 ## Headline result
 
@@ -44,7 +46,7 @@ reweighting.
   title  = {{GW170817 bright-siren H_0: data and analysis release}},
   year   = {2026},
   howpublished = {\url{https://github.com/ming-256/GW170817-bright-siren-H0}},
-  doi    = {10.5281/zenodo.TODO},
+  doi    = {10.5281/zenodo.21038511},
   note   = {GitHub repository plus Zenodo archival snapshot containing the
             derived CSV summaries, run catalogue, and figure/table-
             generation scripts. Nested-sampling chains are regenerable
@@ -63,9 +65,9 @@ cd GW170817-bright-siren-H0
 conda env create -f environment.yml
 conda activate gw170817-bright-siren-H0
 
-# Download the chain bundle from Zenodo (DOI in CITATION.cff) and unpack
-# it into results/test_suite/.  Layout instructions in
-# docs/data_provenance.md.
+# Per-run chains are not redistributed: regenerate them (GPU; see
+# docs/chain_regeneration.md) or request them from the authors, then
+# unpack under results/test_suite/.  Layout in docs/data_provenance.md.
 
 bash regenerate.sh
 ```
@@ -114,7 +116,7 @@ the expected wall-clock per run. As a budget guide:
 - GW170817 strain + PSD + reference PE — [LIGO P1800061](https://dcc.ligo.org/LIGO-P1800061/public) (LVK, 2018)
 - GW170817 H₀ analysis — [LIGO P1700296](https://dcc.ligo.org/LIGO-P1700296/public) (LVK, 2017)
 - GW150914 PE data release — [Zenodo 10.5281/zenodo.6513631](https://doi.org/10.5281/zenodo.6513631) (LVK GWTC-2.1)
-- All chains for this paper — [Zenodo DOI: TODO](https://doi.org/TODO)
+- This repository (archival snapshot) — [Zenodo 10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511)
 
 ## Software
 
