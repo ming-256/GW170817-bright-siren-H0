@@ -88,10 +88,14 @@
   doi = {10.3847/1538-4365/ab06fc}
 }
 
-@misc{Ashton2025Reweighting,
+@article{Ashton2025Reweighting,
   author = {{Ashton}, G.},
-  title = {{Reconstructing and resampling: a guide to utilising posterior samples from gravitational wave observations}},
-  year = {2025},
+  title = {{Reconstructing and resampling: a guide to utilizing posterior samples from gravitational wave observations}},
+  journal = {RAS Techniques and Instruments},
+  year = {2026},
+  volume = {5},
+  pages = {rzag012},
+  doi = {10.1093/rasti/rzag012},
   eprint = {2510.11197},
   archivePrefix = {arXiv}
 }
@@ -153,7 +157,7 @@
 }
 
 @misc{Yang2026DataRelease,
-  author = {{Yang}, M. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
+  author = {{Yang}, M.~H. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
   title = {{GW170817 bright-siren $H_0$: data and analysis release}},
   year = {2026},
   howpublished = {\url{https://github.com/ming-256/GW170817-bright-siren-H0}},
@@ -161,10 +165,14 @@
   note = {GitHub repository plus Zenodo archival snapshot containing the derived CSV summaries, run catalogue, and figure/table-generation scripts for this paper; nested-sampling chains are regenerable from the public strain data using the listed sampler.}
 }
 
-@misc{Prathaban2025GPUSpeed,
-  author = {{Prathaban}, M. and {Yallup}, D. and {Alvey}, J. and {Yang}, M. and {Templeton}, W. and {Handley}, W.},
+@article{Prathaban2025GPUSpeed,
+  author = {{Prathaban}, M. and {Yallup}, D. and {Alvey}, J. and {Yang}, M.~H. and {Templeton}, W. and {Handley}, W.},
   title = {{Gravitational-wave inference at GPU speed: A bilby-like nested sampling kernel within blackjax-ns}},
-  year = {2025},
+  journal = {RAS Techniques and Instruments},
+  year = {2026},
+  volume = {5},
+  pages = {rzag034},
+  doi = {10.1093/rasti/rzag034},
   eprint = {2509.04336},
   archivePrefix = {arXiv}
 }
@@ -175,22 +183,26 @@
   journal = {The Astrophysical Journal},
   year = {2023},
   volume = {958},
+  number = {2},
   pages = {129},
   doi = {10.3847/1538-4357/acf5cd},
   eprint = {2302.05333},
-  archivePrefix = {arXiv}
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.IM}
 }
 
 @article{Edwards2023Ripple,
   author = {{Edwards}, T. D. P. and {Wong}, K. W. K. and {Lam}, K. K. H. and {Coogan}, A. and {Foreman-Mackey}, D. and {Isi}, M. and {Zimmerman}, A.},
-  title = {{ripple: Differentiable and Hardware-Accelerated Waveforms for Gravitational Wave Data Analysis}},
+  title = {{Differentiable and hardware-accelerated waveforms for gravitational wave data analysis}},
   journal = {Physical Review D},
   year = {2024},
   volume = {110},
+  number = {6},
   pages = {064028},
   doi = {10.1103/PhysRevD.110.064028},
   eprint = {2302.05329},
-  archivePrefix = {arXiv}
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.IM}
 }
 
 @misc{Cornish2010,
@@ -229,30 +241,11 @@
   archivePrefix = {arXiv}
 }
 
-@article{Abac2024NRTidalv3,
-  author = {{Abac}, A. and {Dietrich}, T. and {Buonanno}, A. and {Steinhoff}, J. and {Ujevic}, M.},
-  title = {{New and Robust Gravitational-Waveform Model for High-Mass-Ratio Binary Neutron Star Systems with Dynamical Tidal Effects}},
-  journal = {Physical Review D},
-  year = {2024},
-  volume = {109},
-  pages = {024062},
-  doi = {10.1103/PhysRevD.109.024062},
-  eprint = {2311.07456},
-  archivePrefix = {arXiv},
-  primaryClass = {gr-qc}
-}
-
-@article{Pratten2020XAS,
-  author = {{Pratten}, G. and {Husa}, S. and {Garc\'ia-Quir\'os}, C. and {Colleoni}, M. and {Ramos-Buades}, A. and {Estell\'es}, H. and {Jaume}, R.},
-  title = {{Setting the cornerstone for the IMRPhenomX family of models for gravitational waves from compact binaries: The dominant harmonic for non-precessing quasi-circular black holes}},
-  journal = {Physical Review D},
-  year = {2020},
-  volume = {102},
-  pages = {064001},
-  doi = {10.1103/PhysRevD.102.064001},
-  eprint = {2001.11412},
-  archivePrefix = {arXiv},
-  primaryClass = {gr-qc}
+@article{Chan2026ripple,
+  author  = {{Chan}, Robin and {Narola}, Harsh and {Ng}, Thomas C. K. and {Wouters}, Thibeau and {Wong}, Isaac C. F. and {Gittins}, Fabian and {Janquart}, Justin and {Van Den Broeck}, Chris},
+  title   = {{New hardware-accelerated and accurate gravitational waveform approximants for fast parameter estimation}},
+  journal = {in prep.},
+  year    = {2026}
 }
 
 @article{HuVeitch2025,
@@ -312,7 +305,7 @@
 }
 
 @misc{GWTC2p1_GW150914_Zenodo,
-  author = {{LIGO Scientific Collaboration} and {Virgo Collaboration} and {KAGRA Collaboration}},
+  author = {{LIGO Scientific Collaboration} and {Virgo Collaboration}},
   title = {{GWTC-2.1: Deep Extended Catalog of Compact Binary Coalescences Observed by LIGO and Virgo During the First Half of the Third Observing Run -- Parameter Estimation Data Release}},
   year = {2022},
   howpublished = {Zenodo, \url{https://doi.org/10.5281/zenodo.6513631}},
@@ -430,6 +423,18 @@
   archivePrefix = {arXiv}
 }
 
+@article{Wang2023GW170817H0,
+  author = {{Wang}, Y.-Y. and {Tang}, S.-P. and {Jin}, Z.-P. and {Fan}, Y.-Z.},
+  title = {{The Late Afterglow of GW170817/GRB 170817A: A Large Viewing Angle and the Shift of the Hubble Constant to a Value More Consistent with the Local Measurements}},
+  journal = {The Astrophysical Journal},
+  year = {2023},
+  volume = {943},
+  pages = {13},
+  doi = {10.3847/1538-4357/aca96c},
+  eprint = {2208.09121},
+  archivePrefix = {arXiv}
+}
+
 @article{Williams2021Nessai,
   author = {{Williams}, M. J. and {Veitch}, J. and {Messenger}, C.},
   title = {{Nested sampling with normalising flows for gravitational-wave inference}},
@@ -479,13 +484,6 @@
   note = {Chapter for the Encyclopedia of Astrophysics (I.\ Mandel, ed.), Elsevier Reference Module}
 }
 
-@misc{Chan2026ripple,
-  author  = {Chan, Robin and Narola, Harsh and Ng, Thomas C. K. and Wouters, Thibeau and Wong, Isaac C. F. and Gittins, Fabian and Janquart, Justin and {Van Den Broeck}, Chris},
-  title   = {New hardware-accelerated and accurate gravitational waveform approximants for fast parameter estimation},
-  year    = {2026},
-  note    = {in preparation},
-}
-
 @article{Chen2018Forecast,
   author = {{Chen}, H.-Y. and {Fishbach}, M. and {Holz}, D. E.},
   title = {{A two per cent Hubble constant measurement from standard sirens within five years}},
@@ -494,4 +492,138 @@
   volume = {562},
   pages = {545--547},
   doi = {10.1038/s41586-018-0606-0}
+}
+
+% ======================================================================
+% Added in co-author review revision (2026-06); all entries verified
+% against arXiv / journal / OpenReview pages.
+% ======================================================================
+
+@article{DiValentino2021HubbleReview,
+  author = {{Di Valentino}, E. and others},
+  title = {{In the realm of the Hubble tension - a review of solutions}},
+  journal = {Classical and Quantum Gravity},
+  year = {2021},
+  volume = {38},
+  number = {15},
+  pages = {153001},
+  doi = {10.1088/1361-6382/ac086d},
+  eprint = {2103.01183},
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.CO}
+}
+
+@misc{LVK2026GWTC5Cosmology,
+  author = {{LIGO Scientific Collaboration} and {Virgo Collaboration} and {KAGRA Collaboration}},
+  title = {{GWTC-5.0: Constraints on the Cosmic Expansion Rate and Modified Gravitational-wave Propagation}},
+  year = {2026},
+  eprint = {2605.27227},
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.CO},
+  doi = {10.48550/arXiv.2605.27227}
+}
+
+@article{Yallup2026BlackjaxNS,
+  author = {{Yallup}, D. and {Kroupa}, N. and {Handley}, W.},
+  title = {{Nested Slice Sampling: Vectorized Nested Sampling for GPU-Accelerated Inference}},
+  journal = {Transactions on Machine Learning Research},
+  issn = {2835-8856},
+  year = {2026},
+  eprint = {2601.23252},
+  archivePrefix = {arXiv},
+  doi = {10.48550/arXiv.2601.23252},
+  url = {https://openreview.net/forum?id=5mF2eRl3gt}
+}
+
+@article{Dax2025DingoBNS,
+  author = {{Dax}, M. and {Green}, S.~R. and {Gair}, J. and {Gupte}, N. and {P\"urrer}, M. and {Raymond}, V. and {Wildberger}, J. and {Macke}, J.~H. and {Buonanno}, A. and {Sch\"olkopf}, B.},
+  title = {{Real-time inference for binary neutron star mergers using machine learning}},
+  journal = {Nature},
+  year = {2025},
+  volume = {639},
+  pages = {49--53},
+  doi = {10.1038/s41586-025-08593-z},
+  eprint = {2407.09602},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
+}
+
+@article{Williams2025SMC,
+  author = {{Williams}, M.~J. and {Karamanis}, M. and {Luo}, Y. and {Seljak}, U.},
+  title = {{Validating Sequential Monte Carlo for Gravitational-Wave Inference}},
+  journal = {Monthly Notices of the Royal Astronomical Society},
+  year = {2025},
+  volume = {543},
+  number = {2},
+  pages = {1479--1493},
+  doi = {10.1093/mnras/staf1458},
+  eprint = {2506.18977},
+  archivePrefix = {arXiv},
+  primaryClass = {astro-ph.IM}
+}
+
+@article{Smith2016ROQ,
+  author = {{Smith}, R. and {Field}, S.~E. and {Blackburn}, K. and {Haster}, C.-J. and {P\"urrer}, M. and {Raymond}, V. and {Schmidt}, P.},
+  title = {{Fast and Accurate Inference on Gravitational Waves from Precessing Compact Binaries}},
+  journal = {Physical Review D},
+  year = {2016},
+  volume = {94},
+  pages = {044031},
+  doi = {10.1103/PhysRevD.94.044031},
+  eprint = {1604.08253},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
+}
+
+@article{Vinciguerra2017Multiband,
+  author = {{Vinciguerra}, S. and {Veitch}, J. and {Mandel}, I.},
+  title = {{Accelerating gravitational wave parameter estimation with multi-band template interpolation}},
+  journal = {Classical and Quantum Gravity},
+  year = {2017},
+  volume = {34},
+  number = {11},
+  pages = {115006},
+  doi = {10.1088/1361-6382/aa6d44},
+  eprint = {1703.02062},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
+}
+
+@article{Morisaki2021Multiband,
+  author = {{Morisaki}, S.},
+  title = {{Accelerating parameter estimation of gravitational waves from compact binary coalescence using adaptive frequency resolutions}},
+  journal = {Physical Review D},
+  year = {2021},
+  volume = {104},
+  pages = {044062},
+  doi = {10.1103/PhysRevD.104.044062},
+  eprint = {2104.07813},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
+}
+
+@article{Abac2024NRTidalv3,
+  author = {{Abac}, A. and {Dietrich}, T. and {Buonanno}, A. and {Steinhoff}, J. and {Ujevic}, M.},
+  title = {{New and Robust Gravitational-Waveform Model for High-Mass-Ratio Binary Neutron Star Systems with Dynamical Tidal Effects}},
+  journal = {Physical Review D},
+  year = {2024},
+  volume = {109},
+  pages = {024062},
+  doi = {10.1103/PhysRevD.109.024062},
+  eprint = {2311.07456},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
+}
+
+@article{Pratten2020XAS,
+  author = {{Pratten}, G. and {Husa}, S. and {Garc\'ia-Quir\'os}, C. and {Colleoni}, M. and {Ramos-Buades}, A. and {Estell\'es}, H. and {Jaume}, R.},
+  title = {{Setting the cornerstone for the IMRPhenomX family of models for gravitational waves from compact binaries: The dominant harmonic for non-precessing quasi-circular black holes}},
+  journal = {Physical Review D},
+  year = {2020},
+  volume = {102},
+  pages = {064001},
+  doi = {10.1103/PhysRevD.102.064001},
+  eprint = {2001.11412},
+  archivePrefix = {arXiv},
+  primaryClass = {gr-qc}
 }

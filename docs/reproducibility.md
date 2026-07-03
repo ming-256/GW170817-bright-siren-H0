@@ -82,7 +82,7 @@ This runs (in order)
    `paper/figures/`. Figure 3
    (`scripts/compare_bimodality_waveforms.py`) writes its output
    directly into `paper/figures/`.
-3. `latexmk -pdf paper/main.tex` — builds the 11-page MNRAS PDF.
+3. `latexmk -pdf paper/main.tex` — builds the 12-page MNRAS PDF.
 
 Wall-clock ~3 min on a 2024-vintage laptop. No GPU required.
 

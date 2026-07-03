@@ -24,14 +24,15 @@ inventory CSV in the main project repository.
 |------|------|-------------------|
 | `paper/main.tex` | manuscript source (409 lines) | canonical version of `mnras_paper/main.tex` |
 | `paper/references.bib` | bibliography (45 entries) | canonical version of `mnras_paper/references.bib` |
-| `paper/main.pdf` | built artefact (11 pages, 249-word abstract) | `latexmk -pdf paper/main.tex` |
+| `paper/main.pdf` | built artefact (12 pages, 249-word abstract) | `latexmk -pdf paper/main.tex` |
 | `paper/figures/corner_GW150914_waveform_comparison.pdf` | Figure 1 | `scripts/plot_GW150914_waveform_comparison.py` + the s17a chain |
-| `paper/figures/H0_prior_sensitivity.pdf` | Figure 2 | `scripts/plot_H0_prior_sensitivity.py` + s14 IMRX × 4 + s18 vpmean × 3 |
-| `paper/figures/bimodality_imr_vs_imrx.pdf` | Figure 3 | `scripts/compare_bimodality_waveforms.py` + s10 IMR refModeB + s14 IMRX flatz |
-| `paper/figures/bimodality.pdf` | Figure 4 | `scripts/plot_bimodality.py` + s10 IMR dL30-75 / dL10-30 / dL10-75-refModeB |
-| `paper/figures/H0_waveform_comparison.pdf` | Figure 5 | `scripts/plot_H0_GW170817_waveform_comparison.py` + s14 IMRX + TF2 baseline |
-| `paper/figures/corner_GW170817_waveform_comparison.pdf` | Figure 6 | `scripts/plot_GW170817_waveform_corner.py` + s14 IMRX + TF2 baseline + LVK GWTC-1 HDF5 |
-| `paper/figures/scaling_study_full.pdf` | supplementary scaling plot (no longer a paper figure; retained for reproducibility) | `scripts/plot_scaling_full.py` + s13 n_live sweep + s07 LVK-bounds anchor |
+| `paper/figures/corner_IMRPhenomD_hetero_vs_unhetero.pdf` | Figure 2 | `scripts/plot_corner_IMRPhenomD_hetero_vs_unhetero.py` + IMRPhenomD heterodyned + unheterodyned baseline + LVK GWTC-1 HDF5 |
+| `paper/figures/H0_prior_sensitivity.pdf` | Figure 3 | `scripts/plot_H0_prior_sensitivity.py` + s14 IMRX × 4 + s18 vpmean × 3 |
+| `paper/figures/bimodality_imr_vs_imrx.pdf` | Figure 4 | `scripts/compare_bimodality_waveforms.py` + s10 IMR refModeB + s14 IMRX flatz |
+| `paper/figures/bimodality.pdf` | Figure 5 | `scripts/plot_bimodality.py` + s10 IMR dL30-75 / dL10-30 / dL10-75-refModeB |
+| `paper/figures/H0_waveform_comparison.pdf` | Figure 6 | `scripts/plot_H0_GW170817_waveform_comparison.py` + s14 IMRX + TF2 baseline |
+| `paper/figures/corner_GW170817_waveform_comparison.pdf` | Figure 7 | `scripts/plot_GW170817_waveform_corner.py` + s14 IMRX + TF2 baseline + LVK GWTC-1 HDF5 |
+| `paper/figures/scaling_study_full.pdf` | supplementary scaling plot (not a paper figure; retained for reproducibility) | `scripts/plot_scaling_full.py` + s13 n_live sweep + s07 LVK-bounds anchor |
 | `paper/tables/table1_gw150914.tex` | Table 1 (GW150914 validation) | `scripts/build_paper_tables.py` |
 | `paper/tables/tableW_waveform.tex` | Table 4 (cross-waveform H₀) | `scripts/build_waveform_table.py` |
 | `paper/tables/table5_prior_sensitivity.tex` | Table 5 (prior-sensitivity sweep) | `scripts/build_paper_tables.py` |
@@ -45,12 +46,13 @@ inventory CSV in the main project repository.
 | `scripts/build_paper_tables.py` | canonical table & summary generator (Tables 1/5/6); emits `paper/tables/*.tex` + `results/gwtc1_phasemarg/{paper_tables,paper_diagnostics}.csv` |
 | `scripts/build_waveform_table.py` | cross-waveform table (Table 4); emits `results/gwtc1_phasemarg/tableW_waveform.tex` |
 | `scripts/plot_GW150914_waveform_comparison.py` | Figure 1 |
-| `scripts/plot_H0_prior_sensitivity.py` | Figure 2 |
-| `scripts/compare_bimodality_waveforms.py` | Figure 3 |
-| `scripts/plot_bimodality.py` | Figure 4 |
-| `scripts/plot_H0_GW170817_waveform_comparison.py` | Figure 5 |
-| `scripts/plot_GW170817_waveform_corner.py` | Figure 6 |
-| `scripts/plot_scaling_full.py` | supplementary scaling plot (no longer a paper figure) |
+| `scripts/plot_corner_IMRPhenomD_hetero_vs_unhetero.py` | Figure 2 |
+| `scripts/plot_H0_prior_sensitivity.py` | Figure 3 |
+| `scripts/compare_bimodality_waveforms.py` | Figure 4 |
+| `scripts/plot_bimodality.py` | Figure 5 |
+| `scripts/plot_H0_GW170817_waveform_comparison.py` | Figure 6 |
+| `scripts/plot_GW170817_waveform_corner.py` | Figure 7 |
+| `scripts/plot_scaling_full.py` | supplementary scaling plot (not a paper figure) |
 
 ## `analysis/` — per-sweep aggregators and referee-response diagnostics
 

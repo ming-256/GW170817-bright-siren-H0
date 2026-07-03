@@ -2,10 +2,11 @@
 
 This repository accompanies
 
-> **Yang M., Prathaban M., Yallup D., Handley W.** (2026).
+> **Yang M. H., Prathaban M., Yallup D., Handley W.** (2026).
 > *Rapid Hubble constant inference from GW170817 using GPU-accelerated
 > nested sampling: prior sensitivity and the limits of post-hoc
 > reweighting.* MNRAS (submitted).
+> [arXiv:2606.30504](https://arxiv.org/abs/2606.30504)
 
 It contains the analysis scripts, run catalogue, derived summary tables,
 and figure- and table-generation code needed to reproduce every numerical
@@ -42,7 +43,7 @@ reweighting.
 
 ```bibtex
 @misc{Yang2026DataRelease,
-  author = {{Yang}, M. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
+  author = {{Yang}, M.~H. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
   title  = {{GW170817 bright-siren H_0: data and analysis release}},
   year   = {2026},
   howpublished = {\url{https://github.com/ming-256/GW170817-bright-siren-H0}},
@@ -75,8 +76,8 @@ bash regenerate.sh
 `regenerate.sh` produces
 
 - 4 table `.tex` files in `results/gwtc1_phasemarg/` (mirrored to `paper/tables/`)
-- 6 paper-figure PDFs, plus the supplementary `scaling_study_full.pdf`, in `results/gwtc1_phasemarg/plots/` (mirrored to `paper/figures/`)
-- `paper/main.pdf` — the 11-page submitted MNRAS manuscript
+- 7 paper-figure PDFs, plus the supplementary `scaling_study_full.pdf`, in `results/gwtc1_phasemarg/plots/` (mirrored to `paper/figures/`)
+- `paper/main.pdf` — the 12-page submitted MNRAS manuscript
 
 ## Chain regeneration (GPU only)
 
