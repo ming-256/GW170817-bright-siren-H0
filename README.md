@@ -6,6 +6,7 @@ This repository accompanies
 > *Rapid Hubble constant inference from GW170817 using GPU-accelerated
 > nested sampling: prior sensitivity and the limits of post-hoc
 > reweighting.* MNRAS (submitted).
+> [arXiv:2606.30504](https://arxiv.org/abs/2606.30504)
 
 It contains the analysis scripts, run catalogue, derived summary tables,
 and figure- and table-generation code needed to reproduce every numerical

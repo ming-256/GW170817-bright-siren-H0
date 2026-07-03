@@ -44,4 +44,8 @@ preferred-citation:
   title: "Rapid Hubble constant inference from GW170817 using GPU-accelerated nested sampling: prior sensitivity and the limits of post-hoc reweighting"
   journal: "Monthly Notices of the Royal Astronomical Society"
   year: 2026
-  notes: "Submitted; arXiv ID and DOI to be added on acceptance."
+  identifiers:
+    - type: other
+      value: "arXiv:2606.30504"
+      description: "arXiv preprint identifier"
+  notes: "Preprint available on arXiv (arXiv:2606.30504); journal volume, page, and DOI to be added on acceptance."
