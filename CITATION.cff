@@ -4,7 +4,7 @@ message: "If you use this software or its derived summaries, please cite the lin
 type: software
 authors:
   - family-names: Yang
-    given-names: Ming
+    given-names: Ming Han
     affiliation: "Institute of Astronomy and St John's College, University of Cambridge (formerly); independent researcher"
     email: mhy32@cantab.ac.uk
     orcid: "https://orcid.org/0009-0002-7298-7740"
@@ -33,7 +33,7 @@ preferred-citation:
   type: article
   authors:
     - family-names: Yang
-      given-names: Ming
+      given-names: Ming Han
       orcid: "https://orcid.org/0009-0002-7298-7740"
     - family-names: Prathaban
       given-names: Metha

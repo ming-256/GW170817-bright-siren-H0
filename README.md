@@ -2,7 +2,7 @@
 
 This repository accompanies
 
-> **Yang M., Prathaban M., Yallup D., Handley W.** (2026).
+> **Yang M. H., Prathaban M., Yallup D., Handley W.** (2026).
 > *Rapid Hubble constant inference from GW170817 using GPU-accelerated
 > nested sampling: prior sensitivity and the limits of post-hoc
 > reweighting.* MNRAS (submitted).
@@ -43,7 +43,7 @@ reweighting.
 
 ```bibtex
 @misc{Yang2026DataRelease,
-  author = {{Yang}, M. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
+  author = {{Yang}, M.~H. and {Prathaban}, M. and {Yallup}, D. and {Handley}, W.},
   title  = {{GW170817 bright-siren H_0: data and analysis release}},
   year   = {2026},
   howpublished = {\url{https://github.com/ming-256/GW170817-bright-siren-H0}},
