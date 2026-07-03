@@ -46,9 +46,10 @@ run_figures() {
     $PY scripts/plot_bimodality.py                     # Fig 4
     $PY scripts/plot_H0_GW170817_waveform_comparison.py # Fig 5
     $PY scripts/plot_GW170817_waveform_corner.py       # Fig 6
-    $PY scripts/plot_scaling_full.py                   # Fig 7
+    $PY scripts/plot_corner_IMRPhenomD_hetero_vs_unhetero.py  # Fig 7
+    $PY scripts/plot_scaling_full.py                   # supplementary scaling plot (not a paper figure)
     # Mirror PDFs to paper/figures/
-    for f in corner_GW150914_waveform_comparison H0_prior_sensitivity bimodality H0_waveform_comparison corner_GW170817_waveform_comparison scaling_study_full; do
+    for f in corner_GW150914_waveform_comparison H0_prior_sensitivity bimodality H0_waveform_comparison corner_GW170817_waveform_comparison corner_IMRPhenomD_hetero_vs_unhetero scaling_study_full; do
         cp -f "results/gwtc1_phasemarg/plots/${f}.pdf"  "paper/figures/${f}.pdf"
     done
     # Fig 3 is written by compare_bimodality_waveforms.py directly to paper/figures/.
