@@ -114,14 +114,19 @@ for f in d.get("files", []):
         return 1
     fi
 
-    mkdir -p results
+    # The bundle stores repository-relative paths (results/test_suite/...), so
+    # it unpacks at the repository root, not inside results/. Extracting into
+    # results/ would produce results/results/... and leave every chain where
+    # nothing looks for it.
+    mkdir -p .cache
     while IFS=$'\t' read -r key link; do
         [[ -z "$key" ]] && continue
-        get "$link" "results/$key"
+        local archive=".cache/$(basename "$key")"
+        get "$link" "$archive"
         case "$key" in
-            *.tar.gz)  echo "  unpacking $key"; tar -xzf "results/$key" -C results ;;
-            *.tar.zst) echo "  unpacking $key"; tar --zstd -xf "results/$key" -C results ;;
-            *.zip)     echo "  unpacking $key"; unzip -q -o "results/$key" -d results ;;
+            *.tar.gz)  echo "  unpacking $key"; tar -xzf "$archive" -C . ;;
+            *.tar.zst) echo "  unpacking $key"; tar --zstd -xf "$archive" -C . ;;
+            *.zip)     echo "  unpacking $key"; unzip -q -o "$archive" -d . ;;
         esac
     done <<< "$urls"
 

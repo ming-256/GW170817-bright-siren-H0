@@ -56,6 +56,9 @@ results/scaling_study/*PhaseMarg*.csv
 gw170817-chains-*.tar.gz
 gw170817-chains-*.sha256
 
+# Archives staged by fetch_data.sh before it unpacks them.
+.cache/
+
 # LVK data we do not redistribute. fetch_data.sh puts the strain and PSD
 # inputs under data/; they are byte-identical (sha256) to the ones that
 # produced the chains. The GWTC-2.1 GW150914 PE release is 287 MB and is
