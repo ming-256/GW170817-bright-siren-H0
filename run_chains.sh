@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
 # Yang et al. (2026) MNRAS — GPU chain regeneration.
 #
-# The chains this release is built from are committed under
-# results/test_suite/, so you do NOT need to run this to reproduce the
-# paper: `bash regenerate.sh` works from a fresh clone. Use this script
-# when you want to reproduce the sampling itself rather than trust ours.
+# You do NOT need this to reproduce the paper. The chains this release is
+# built from are published in the Zenodo deposit: `bash fetch_data.sh chains`
+# downloads them and `bash regenerate.sh` does the rest on a CPU. Use this
+# script when you want to reproduce the sampling itself rather than trust
+# ours.
 #
 # Each session script re-runs one group of runs from the paper, writing
 # results/test_suite/<run_id>/{samples.csv,sampler.log,config.json} and
-# updating results/test_suite/run_catalog.csv. Re-running overwrites the
-# committed chain for that run_id, so work on a branch if you want to
-# diff your chains against ours.
+# updating results/test_suite/run_catalog.csv. Re-running overwrites
+# whatever is in that directory, so keep a copy of the published chain if
+# you want to diff yours against ours.
 #
 # Hardware: a single NVIDIA A100 (40 GB SXM4 or PCIe). Other CUDA-12
 # GPUs with >= 24 GB HBM should work but are not benchmarked.
@@ -57,7 +58,8 @@ require_gpu_stack() {
         echo "       jax, jimgw and blackjax (nested_sampling branch) are all required." >&2
         echo "       See docs/chain_regeneration.md for the install recipe." >&2
         echo "       Note: you do NOT need this stack to reproduce the paper —" >&2
-        echo "       the chains are committed, so 'bash regenerate.sh' works as is." >&2
+        echo "       run 'bash fetch_data.sh chains' for the published chains," >&2
+        echo "       then 'bash regenerate.sh'." >&2
         exit 1
     fi
 }
