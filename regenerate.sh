@@ -2,7 +2,7 @@
 # Yang et al. (2026) MNRAS — CPU-only regeneration pipeline.
 #
 # Inputs:  results/test_suite/sNN__*/samples.csv  (the nested-sampling chains) and their sampler.log
-#          files, plus results/gwtc1_phasemarg/*.csv.  The chains are NOT in git -- they are 3.7 GB
+#          files, plus results/gwtc1_phasemarg/*.csv.  The chains are NOT in git -- they are 3.8 GB
 #          and live in the Zenodo deposit.  Fetch them once with `bash fetch_data.sh chains`
 #          (and check them with `bash fetch_data.sh verify`) before running this.
 #          The LVK GWTC-1 GW170817 reference posterior is at $GWTC1_HDF5 (default: results/GW170817_GWTC-1.hdf5).
@@ -44,7 +44,7 @@ require_chains() {
         echo "error: no nested-sampling chains found under results/test_suite/." >&2
         echo >&2
         echo "       The chains are published on Zenodo, not in git (58 files," >&2
-        echo "       3.7 GB, one of them past GitHub's 100 MB per-file limit)." >&2
+        echo "       3.8 GB, one of them past GitHub's 100 MB per-file limit)." >&2
         echo "       Fetch them once, then re-run:" >&2
         echo >&2
         echo "           bash fetch_data.sh chains" >&2

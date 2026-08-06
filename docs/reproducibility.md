@@ -20,7 +20,7 @@ h5py ≥ 3.10, anesthetic ≥ 2.8).
 
 ## 2. Chains
 
-Fetch them once from the Zenodo deposit (3.7 GB), then verify:
+Fetch them once from the Zenodo deposit (3.8 GB), then verify:
 
 ```bash
 bash fetch_data.sh chains

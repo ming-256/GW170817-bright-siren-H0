@@ -16,7 +16,7 @@ The release spans two places, split by size rather than by importance:
 
 | What | Where | Size |
 |------|-------|------|
-| **Nested-sampling chains, all 58 files** | **Zenodo** — `bash fetch_data.sh chains` | **3.7 GB** |
+| **Nested-sampling chains, all 58 files** | **Zenodo** — `bash fetch_data.sh chains` | **3.8 GB** |
 | Sampler that produced them | git — `pipeline/` | — |
 | Launch scripts for each run group | git — `pipeline/sessions/` | — |
 | Figure and table generators | git — `scripts/`, `analysis/` | — |
@@ -94,7 +94,7 @@ cd GW170817-bright-siren-H0
 conda env create -f environment.yml
 conda activate gw170817-bright-siren-H0
 
-bash fetch_data.sh chains     # 3.7 GB from Zenodo, once
+bash fetch_data.sh chains     # 3.8 GB from Zenodo, once
 bash fetch_data.sh verify     # check every file against CHAIN_MANIFEST.csv
 
 bash regenerate.sh            # ~3 min, no GPU
@@ -154,6 +154,7 @@ budget guide on a single NVIDIA A100 (40 GB):
 ├── run_chains.sh            # GPU re-run of the sampler, one session at a time
 ├── fetch_data.sh            # chains from Zenodo, LVK strain/PSD/PE inputs; and `verify`
 ├── make_chain_bundle.sh     # builds the chain tarball for a new Zenodo version
+├── make_chain_manifest.py   # regenerates the chain checksum manifest
 ├── paper/                   # LaTeX source + figures + tables + PDF
 ├── pipeline/                # the nested sampler that produced the chains
 │   ├── GW170817_heterodyned_{1,2,3}.py   # baseline / flat-in-z / sigma_vp=250

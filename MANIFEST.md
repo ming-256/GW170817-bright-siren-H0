@@ -34,6 +34,7 @@ as stale on this point rather than the release as incomplete.
 | `run_chains.sh` | GPU re-run of the sampler, one session at a time |
 | `fetch_data.sh` | `chains` (from Zenodo), `verify` (against CHAIN_MANIFEST.csv), `figures`, `strain` |
 | `make_chain_bundle.sh` | builds the chain tarball to upload as a new Zenodo version |
+| `make_chain_manifest.py` | regenerates `results/CHAIN_MANIFEST.csv`; refuses symlinks, LFS pointers and undersized files |
 
 ## `paper/` — manuscript
 
@@ -132,7 +133,7 @@ repository: `GWOSC_GW170817_DIR`, `GWOSC_GW150914_DIR`, `GWTC1_HDF5`,
 | `results/test_suite/seed_ensemble_bayes_factor.csv` | per-seed ln 𝓑(B/A) with the ln(20/45) correction |
 | `results/test_suite/selection_term_Ns.csv` | N_s(H₀) for the as-implemented and the hypothetical flat-in-z priors |
 | `results/CHAIN_MANIFEST.csv` | path, size and sha256 of all 58 chains; the contract between git and the Zenodo deposit |
-| `results/test_suite/sNN__*/samples.csv` | the nested-sampling chains, in anesthetic format. **Not in git** — 3.7 GB across 58 files; `bash fetch_data.sh chains` |
+| `results/test_suite/sNN__*/samples.csv` | the nested-sampling chains, in anesthetic format. **Not in git** — 3.8 GB across 58 files; `bash fetch_data.sh chains` |
 | `results/test_suite/sNN__*/sampler.log` | per-run sampler log; every ln Z in Tables 1/5/6 is parsed from these |
 | `results/test_suite/sNN__*/config.json` | per-run provenance: script, waveform, n_live, n_delete, n_bins, seed, git SHA |
 | `results/GW170817_GWTC-1.hdf5` | LVK GWTC-1 GW170817 reference posterior (2.5 MB); heterodyne reference params + GWTC-1 contours |
@@ -140,7 +141,7 @@ repository: `GWOSC_GW170817_DIR`, `GWOSC_GW150914_DIR`, `GWTC1_HDF5`,
 ### Where the chains live
 
 The chains are published in the Zenodo deposit rather than in git: 58
-files, 3.7 GB, one of them 1.2 GB — past GitHub's 100 MB per-file hard
+files, 3.8 GB, one of them 1.2 GB — past GitHub's 100 MB per-file hard
 limit. Publishing most of them here and that one elsewhere would leave
 this repository holding an arbitrary subset, so the whole set ships
 together in the deposit. `bash fetch_data.sh chains` downloads them,

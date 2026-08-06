@@ -3,7 +3,7 @@
 #
 # Git holds the code, the per-run provenance (config.json, sampler.log), the
 # derived summary tables and the figures. The nested-sampling chains live on
-# Zenodo instead: 58 files, 3.7 GB, one of them 1.2 GB, which is well past
+# Zenodo instead: 58 files, 3.8 GB, one of them 1.2 GB, which is well past
 # what belongs in a git repository (and past GitHub's 100 MB per-file limit).
 #
 #   chains   the 58 chain CSVs, from the Zenodo deposit. Needed by
@@ -14,7 +14,7 @@
 #            if you are re-running the sampler via run_chains.sh.
 #
 # Usage:
-#   bash fetch_data.sh chains       # 3.7 GB  — required to rebuild the paper
+#   bash fetch_data.sh chains       # 3.8 GB  — required to rebuild the paper
 #   bash fetch_data.sh figures      # 287 MB  — to rebuild Figure 1
 #   bash fetch_data.sh strain       # ~440 MB — to re-run the sampler
 #   bash fetch_data.sh all
