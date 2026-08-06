@@ -34,7 +34,30 @@ MODE="${1:-all}"
 mkdir -p paper/figures paper/tables
 mkdir -p results/gwtc1_phasemarg/plots
 
+# The chains are not in git; they come from the Zenodo deposit. Forgetting
+# that step is the most likely way to land here, so say so plainly rather
+# than letting the table builder die on a None it cannot format.
+require_chains() {
+    local n
+    n=$(find results/test_suite -name 'samples.csv' 2>/dev/null | wc -l | tr -d ' ')
+    if [[ "$n" -eq 0 ]]; then
+        echo "error: no nested-sampling chains found under results/test_suite/." >&2
+        echo >&2
+        echo "       The chains are published on Zenodo, not in git (58 files," >&2
+        echo "       3.7 GB, one of them past GitHub's 100 MB per-file limit)." >&2
+        echo "       Fetch them once, then re-run:" >&2
+        echo >&2
+        echo "           bash fetch_data.sh chains" >&2
+        echo "           bash fetch_data.sh verify" >&2
+        echo >&2
+        echo "       To regenerate them on a GPU instead, see" >&2
+        echo "       docs/chain_regeneration.md." >&2
+        exit 1
+    fi
+}
+
 run_tables() {
+    require_chains
     echo "--- Tables (build_paper_tables.py + build_waveform_table.py) ---"
     $PY scripts/build_paper_tables.py
     $PY scripts/build_waveform_table.py
@@ -45,6 +68,7 @@ run_tables() {
 }
 
 run_figures() {
+    require_chains
     echo "--- Figures ---"
     # Figure 1 overlays the LVK GWTC-2.1 GW150914 posterior, the one input we
     # do not redistribute. Skip it rather than aborting the whole run, so a
