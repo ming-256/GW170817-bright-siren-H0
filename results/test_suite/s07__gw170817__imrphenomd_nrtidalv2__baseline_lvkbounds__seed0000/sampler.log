@@ -1,0 +1,75 @@
+Data source: local, PSD source: gwtc1
+  H1: data=0.6s, PSD(gwtc1)=0.6s, total=2.2s
+  L1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+  V1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+[TIMING] Data loading: 3.8s
+Waveform: IMRPhenomD_NRTidalv2
+Reference (gwtc1): M_c=1.1976, q=0.8659, d_L=40.0
+[TIMING] Reference params: 0.0s
+Setting up heterodyning with 501 bins...
+Heterodyning setup complete. Bin shape: (3, 501)
+[TIMING] Heterodyning setup: 17.4s
+Traceback (most recent call last):
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/GW170817/Scripts/GW170817_heterodyned_1.py", line 1035, in <module>
+    state = nested_sampler.init(initial_particles)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/blackjax/ns/nss.py", line 223, in init_fn
+    return init(
+           ^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/blackjax/ns/adaptive.py", line 64, in init
+    base_state = base_init(
+                 ^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/blackjax/ns/base.py", line 134, in init
+    state_init = init_state_fn(positions)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/blackjax/ns/base.py", line 99, in init_state_strategy
+    logprior_values = logprior_fn(position)
+                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/GW170817/Scripts/GW170817_heterodyned_1.py", line 258, in logprior_fn
+    in_bounds = (x >= PRIOR_LO) & (x <= PRIOR_HI)
+                 ^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py", line 1467, in op
+    return getattr(self.aval, f"_{name}")(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/jax/_src/numpy/array_methods.py", line 718, in _operator_ge
+    return ufuncs.greater_equal(self, cast(ArrayLike, other))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/jax/_src/numpy/ufuncs.py", line 2024, in greater_equal
+    return _complex_comparison(lax.ge, *promote_args("greater_equal", x, y))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/venv/lib/python3.12/site-packages/jax/_src/numpy/ufuncs.py", line 1978, in _complex_comparison
+    return lax_op(x, y)
+           ^^^^^^^^^^^^
+TypeError: ge got incompatible shapes for broadcasting: (16,), (14,).
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.
+Data source: local, PSD source: gwtc1
+  H1: data=0.6s, PSD(gwtc1)=0.6s, total=2.1s
+  L1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+  V1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+[TIMING] Data loading: 3.8s
+Waveform: IMRPhenomD_NRTidalv2
+Reference (gwtc1): M_c=1.1976, q=0.8659, d_L=40.0
+[TIMING] Reference params: 0.0s
+Setting up heterodyning with 501 bins...
+Heterodyning setup complete. Bin shape: (3, 501)
+[TIMING] Heterodyning setup: 17.4s
+[TIMING] Prior sampling + init: 82.9s
+Running nested sampling: 5000 live, 14D (phase_c marginalized)
+JIT-compiling first step...
+[TIMING] JIT compilation (first step): 45.0s
+Dead points: 2500 dead points [00:00, ? dead points/s]Dead points: 5000 dead points [00:41, 59.84 dead points/s]Dead points: 7500 dead points [00:53, 104.58 dead points/s]Dead points: 10000 dead points [01:04, 135.99 dead points/s]Dead points: 12500 dead points [01:16, 158.09 dead points/s]Dead points: 15000 dead points [01:28, 172.57 dead points/s]Dead points: 15000 dead points [01:40, 172.57 dead points/s]Dead points: 17500 dead points [01:41, 181.16 dead points/s]Dead points: 20000 dead points [01:53, 186.76 dead points/s]Dead points: 22500 dead points [02:06, 190.39 dead points/s]Dead points: 25000 dead points [02:19, 192.36 dead points/s]Dead points: 25000 dead points [02:30, 192.36 dead points/s]Dead points: 27500 dead points [02:31, 196.56 dead points/s]Dead points: 30000 dead points [02:42, 202.48 dead points/s]Dead points: 32500 dead points [02:53, 213.79 dead points/s]Dead points: 35000 dead points [03:03, 223.09 dead points/s]Dead points: 37500 dead points [03:13, 230.27 dead points/s]Dead points: 40000 dead points [03:23, 235.77 dead points/s]Dead points: 42500 dead points [03:33, 238.57 dead points/s]Dead points: 45000 dead points [03:43, 240.37 dead points/s]Dead points: 47500 dead points [03:53, 243.79 dead points/s]Dead points: 50000 dead points [04:03, 244.57 dead points/s]Dead points: 52500 dead points [04:13, 245.89 dead points/s]Dead points: 55000 dead points [04:23, 245.57 dead points/s]Dead points: 57500 dead points [04:34, 245.63 dead points/s]Dead points: 60000 dead points [04:44, 245.59 dead points/s]Dead points: 62500 dead points [04:54, 245.06 dead points/s]Dead points: 65000 dead points [05:04, 244.82 dead points/s]Dead points: 67500 dead points [05:15, 244.57 dead points/s]Dead points: 70000 dead points [05:25, 242.92 dead points/s]Dead points: 72500 dead points [05:36, 240.83 dead points/s]Dead points: 75000 dead points [05:46, 239.82 dead points/s]Dead points: 77500 dead points [05:57, 239.68 dead points/s]Dead points: 80000 dead points [06:07, 238.76 dead points/s]Dead points: 82500 dead points [06:18, 237.88 dead points/s]Dead points: 85000 dead points [06:28, 236.19 dead points/s]Dead points: 87500 dead points [06:39, 235.37 dead points/s]Dead points: 87500 dead points [06:50, 235.37 dead points/s]Dead points: 90000 dead points [06:50, 233.26 dead points/s]Dead points: 92500 dead points [07:01, 233.52 dead points/s]Dead points: 95000 dead points [07:11, 234.75 dead points/s]Dead points: 97500 dead points [07:22, 235.35 dead points/s]Dead points: 100000 dead points [07:32, 235.61 dead points/s]Dead points: 102500 dead points [07:43, 237.77 dead points/s]Dead points: 105000 dead points [07:53, 239.87 dead points/s]Dead points: 107500 dead points [08:03, 242.98 dead points/s]Dead points: 110000 dead points [08:13, 244.43 dead points/s]Dead points: 112500 dead points [08:23, 247.00 dead points/s]Dead points: 115000 dead points [08:33, 250.86 dead points/s]Dead points: 117500 dead points [08:42, 254.51 dead points/s]Dead points: 120000 dead points [08:52, 256.02 dead points/s]Dead points: 122500 dead points [09:01, 257.14 dead points/s]Dead points: 125000 dead points [09:11, 258.29 dead points/s]Dead points: 127500 dead points [09:20, 258.48 dead points/s]Dead points: 130000 dead points [09:30, 257.01 dead points/s]Dead points: 132500 dead points [09:40, 257.11 dead points/s]Dead points: 135000 dead points [09:50, 256.75 dead points/s]Dead points: 137500 dead points [10:00, 255.74 dead points/s]Dead points: 140000 dead points [10:10, 254.56 dead points/s]Dead points: 142500 dead points [10:20, 253.63 dead points/s]Dead points: 145000 dead points [10:30, 251.96 dead points/s]Dead points: 147500 dead points [10:40, 252.31 dead points/s]Dead points: 150000 dead points [10:49, 252.17 dead points/s]Dead points: 152500 dead points [10:59, 252.84 dead points/s]Dead points: 155000 dead points [11:09, 252.99 dead points/s]Dead points: 157500 dead points [11:19, 254.57 dead points/s]Dead points: 157500 dead points [11:19, 228.18 dead points/s]
+Log Evidence: 489.96 +/- 0.10
+Saved to /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s07__gw170817__imrphenomd_nrtidalv2__baseline_lvkbounds__seed0000/PhaseMarg_Heterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_ref-gwtc1_baseline.csv
+
+==================================================
+TIMING SUMMARY
+==================================================
+  Data loading:         3.8s
+  Reference params:     0.0s
+  Heterodyne setup:    17.4s
+  Init + prior:        82.9s
+  JIT compilation:     45.0s
+  Sampling:           679.3s
+  Total:              849.0s
+==================================================

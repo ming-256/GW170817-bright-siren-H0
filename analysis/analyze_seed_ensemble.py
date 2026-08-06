@@ -16,7 +16,7 @@ Runs discovered (glob, no catalog required):
 Outputs:
   - Results/test_suite/seed_ensemble_summary.csv          (per-run rows)
   - Results/test_suite/seed_ensemble_bayes_factor.csv     (per-seed lnB, ensemble stats)
-  - mnras_paper/figures/seed_ensemble_lnZ.{pdf,png}       (lnZ scatter + lnB distribution)
+  - paper/figures/seed_ensemble_lnZ.{pdf,png}       (lnZ scatter + lnB distribution)
 
 The deliverable is the empirical sigma(lnZ) per mode, which replaces the
 unsupported '+/-0.1 per-run' claim in section 5 of the manuscript.
@@ -191,7 +191,7 @@ def main():
     fig.suptitle("M2: GW170817 IMR/NRTidalv2 bimodality seed ensemble")
     fig.tight_layout()
 
-    fig_dir = os.path.join(REPO_ROOT, "mnras_paper", "figures")
+    fig_dir = os.path.join(REPO_ROOT, "paper", "figures")
     os.makedirs(fig_dir, exist_ok=True)
     for ext in ("pdf", "png"):
         path = os.path.join(fig_dir, f"seed_ensemble_lnZ.{ext}")

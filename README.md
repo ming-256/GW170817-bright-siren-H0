@@ -8,16 +8,44 @@ This repository accompanies
 > reweighting.* MNRAS (submitted).
 > [arXiv:2606.30504](https://arxiv.org/abs/2606.30504)
 
-It contains the analysis scripts, run catalogue, derived summary tables,
-and figure- and table-generation code needed to reproduce every numerical
-claim and every figure in the paper. The nested-sampling **chains
-themselves are not committed here** — each individual `samples.csv` is
-~100 MB and the full set runs to several GB; they are not redistributed,
-but can be regenerated from the public LVK strain data with the
-[BlackJAX-NS](https://github.com/handley-lab/blackjax) sampler and the
-heterodyned-likelihood kernel of Prathaban et al. (2025). An archival
-snapshot of this repository is on Zenodo:
-[10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511).
+It is a complete release: the sampling pipeline, the nested-sampling
+chains it produced, the analysis and plotting code, the derived summary
+tables, and the manuscript source.
+
+The release spans two places, split by size rather than by importance:
+
+| What | Where | Size |
+|------|-------|------|
+| **Nested-sampling chains, all 58 files** | **Zenodo** — `bash fetch_data.sh chains` | **3.8 GB** |
+| Sampler that produced them | git — `pipeline/` | — |
+| Launch scripts for each run group | git — `pipeline/sessions/` | — |
+| Figure and table generators | git — `scripts/`, `analysis/` | — |
+| Per-run provenance and sampler logs | git — `results/test_suite/<run_id>/` | 0.3 MB |
+| Run catalogue and derived summaries | git — `results/test_suite/*.csv` | — |
+| Chain checksums | git — `results/CHAIN_MANIFEST.csv` | — |
+| LVK GWTC-1 GW170817 reference posterior | git — `results/GW170817_GWTC-1.hdf5` | 2.5 MB |
+
+The chains are on Zenodo and not in git because one of them is 1.2 GB, past
+GitHub's 100 MB per-file hard limit. Splitting them — most in git, that one
+elsewhere — would leave the repository holding an arbitrary subset, so the
+whole set is published together in the deposit instead. Every chain's
+sha256 is in `results/CHAIN_MANIFEST.csv`, so a download can be checked
+against what git says it should be.
+
+What stays in git is the part that makes the chains interpretable: for each
+run, the `config.json` recording the exact script, waveform, sampler
+settings, seed and git SHA, and the `sampler.log` the evidences are parsed
+from.
+
+Two further inputs belong to the LVK rather than to us and are fetched, not
+redistributed: the 287 MB GWTC-2.1 GW150914 PE release (Figure 1 only), and
+the strain and PSD inputs (only needed to re-run the sampler). The strain
+files `fetch_data.sh` downloads are byte-identical by sha256 to the ones
+that produced these chains.
+
+The Zenodo deposit sits under the concept DOI
+[10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511), which
+always resolves to the newest version — that is the DOI to cite.
 
 ## Headline result
 
@@ -49,15 +77,15 @@ reweighting.
   howpublished = {\url{https://github.com/ming-256/GW170817-bright-siren-H0}},
   doi    = {10.5281/zenodo.21038511},
   note   = {GitHub repository plus Zenodo archival snapshot containing the
-            derived CSV summaries, run catalogue, and figure/table-
-            generation scripts. Nested-sampling chains are regenerable
-            from the public strain data using the BlackJAX-NS sampler.}
+            nested-sampling chains, the sampling pipeline, the derived CSV
+            summaries, the run catalogue, and the figure/table-generation
+            scripts for this paper.}
 }
 ```
 
 A GitHub Citation widget is configured via `CITATION.cff`.
 
-## Quick start (CPU only, ≈ 3 min)
+## Quick start (CPU only)
 
 ```bash
 git clone https://github.com/ming-256/GW170817-bright-siren-H0
@@ -66,11 +94,10 @@ cd GW170817-bright-siren-H0
 conda env create -f environment.yml
 conda activate gw170817-bright-siren-H0
 
-# Per-run chains are not redistributed: regenerate them (GPU; see
-# docs/chain_regeneration.md) or request them from the authors, then
-# unpack under results/test_suite/.  Layout in docs/data_provenance.md.
+bash fetch_data.sh chains     # 3.8 GB from Zenodo, once
+bash fetch_data.sh verify     # check every file against CHAIN_MANIFEST.csv
 
-bash regenerate.sh
+bash regenerate.sh            # ~3 min, no GPU
 ```
 
 `regenerate.sh` produces
@@ -79,12 +106,32 @@ bash regenerate.sh
 - 7 paper-figure PDFs, plus the supplementary `scaling_study_full.pdf`, in `results/gwtc1_phasemarg/plots/` (mirrored to `paper/figures/`)
 - `paper/main.pdf` — the 12-page submitted MNRAS manuscript
 
-## Chain regeneration (GPU only)
+Figure 1 overlays the LVK GWTC-2.1 GW150914 posterior, which is 287 MB of
+LVK data we do not redistribute. Fetch it once if you want that figure:
 
-The nested-sampling chains are reproducible on a single NVIDIA A100
-(40 GB) GPU using the BlackJAX-NS sampler and the heterodyned-likelihood
-kernel. See `docs/chain_regeneration.md` for the per-run invocations and
-the expected wall-clock per run. As a budget guide:
+```bash
+bash fetch_data.sh figures      # 287 MB, from Zenodo 10.5281/zenodo.6513631
+```
+
+Without it `regenerate.sh` still builds the other seven figures, all four
+tables and the PDF.
+
+## Re-running the sampler (GPU)
+
+You do not need this to reproduce the paper — `fetch_data.sh chains` gets
+you the published chains. Use it to reproduce the sampling itself.
+
+```bash
+bash fetch_data.sh strain       # LVK strain + PSDs, ~440 MB
+bash run_chains.sh list         # what each session produces
+bash run_chains.sh session_14_xas_prior_sensitivity
+```
+
+The sampler lives in `pipeline/`; `pipeline/sessions/session_*.sh` are the
+scripts that drove the paper's runs, and they write straight back into
+`results/test_suite/<run_id>/`. `docs/chain_regeneration.md` has the
+sampler settings, the software versions and the per-run wall-clock. As a
+budget guide on a single NVIDIA A100 (40 GB):
 
 | Run set | Wall-clock |
 |---------|-----------|
@@ -104,12 +151,25 @@ the expected wall-clock per run. As a budget guide:
 ├── environment.yml          # conda environment
 ├── requirements.txt         # pip-only mirror of the env's pip section
 ├── regenerate.sh            # CPU-only rebuild of tables, figures, PDF
-├── run_chains.sh            # GPU-only chain regeneration (stub; see docs/)
+├── run_chains.sh            # GPU re-run of the sampler, one session at a time
+├── fetch_data.sh            # chains from Zenodo, LVK strain/PSD/PE inputs; and `verify`
+├── make_chain_bundle.sh     # builds the chain tarball for a new Zenodo version
+├── make_chain_manifest.py   # regenerates the chain checksum manifest
 ├── paper/                   # LaTeX source + figures + tables + PDF
-├── scripts/                 # the 9 production plot/table scripts
-├── analysis/                # the 9 per-sweep aggregators + the M-series referee diagnostics
-├── results/                 # derived CSVs + .tex tables + plot PDFs
-└── docs/                    # reproducibility / chain_regeneration / data_provenance
+├── pipeline/                # the nested sampler that produced the chains
+│   ├── GW170817_heterodyned_{1,2,3}.py   # baseline / flat-in-z / sigma_vp=250
+│   ├── GW170817_unheterodyned_1.py       # unheterodyned reference
+│   ├── GW150914_heterodyned.py           # GW150914 XPHM validation
+│   ├── reweight_dL_to_flat_z.py          # post-hoc reweighting
+│   └── sessions/                         # the 19 launch scripts, one per run group
+├── scripts/                 # the 11 production plot/table generators
+├── analysis/                # the 11 per-sweep aggregators + referee diagnostics
+├── results/                 # provenance + derived CSVs + .tex tables + plot PDFs
+│   ├── CHAIN_MANIFEST.csv   # sha256 + size of all 58 chains (they live on Zenodo)
+│   ├── test_suite/<run_id>/ # sampler.log + config.json per run (chains fetched here)
+│   └── gwtc1_phasemarg/     # host-localised chains, tables, figure PDFs
+└── docs/                    # reproducibility / chain_regeneration / data_provenance /
+                             #   publishing_the_chains (maintainer runbook)
 ```
 
 ## Data sources
@@ -117,7 +177,8 @@ the expected wall-clock per run. As a budget guide:
 - GW170817 strain + PSD + reference PE — [LIGO P1800061](https://dcc.ligo.org/LIGO-P1800061/public) (LVK, 2018)
 - GW170817 H₀ analysis — [LIGO P1700296](https://dcc.ligo.org/LIGO-P1700296/public) (LVK, 2017)
 - GW150914 PE data release — [Zenodo 10.5281/zenodo.6513631](https://doi.org/10.5281/zenodo.6513631) (LVK GWTC-2.1)
-- This repository (archival snapshot) — [Zenodo 10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511)
+- GW170817 and GW150914 strain — [GWOSC](https://gwosc.org); `fetch_data.sh` has the exact URLs
+- This repository (archival snapshot) — [Zenodo 10.5281/zenodo.21038511](https://doi.org/10.5281/zenodo.21038511) (concept DOI, resolves to the latest version)
 
 ## Software
 

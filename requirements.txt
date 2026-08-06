@@ -5,4 +5,5 @@ numpy>=2.0
 scipy>=1.13
 pandas>=2.2
 matplotlib>=3.9
+h5py>=3.10
 anesthetic>=2.8

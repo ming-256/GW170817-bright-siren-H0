@@ -1,0 +1,59 @@
+usage: GW170817_unheterodyned_1.py [-h]
+                                   [--waveform {IMRPhenomD_NRTidalv2,TaylorF2}]
+                                   [--data-source {fetch,local}]
+                                   [--psd-source {self,bilby,gwtc1,kazewong}]
+                                   [--phase-marginalization]
+                                   [--output-dir OUTPUT_DIR]
+                                   [--checkpoint-every CHECKPOINT_EVERY]
+                                   [--no-resume] [--wide-prior]
+                                   [--label-suffix LABEL_SUFFIX]
+                                   [--nlive NLIVE]
+GW170817_unheterodyned_1.py: error: unrecognized arguments: --ref-params gwtc1 --n-live 500
+Using FULL-SKY priors (narrow M_c/q/spin)
+Data source: local, PSD source: gwtc1
+  H1: data=0.6s, PSD(gwtc1)=0.6s, total=2.2s
+  L1: data=0.5s, PSD(gwtc1)=0.3s, total=0.9s
+  V1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+[TIMING] Data loading: 4.0s
+Waveform: IMRPhenomD_NRTidalv2
+[TIMING] Data stacking: 0.1s
+Frequency grid: 259201 bins, df=0.007812 Hz
+Chunked init: 500 particles in batches of 100...
+  init chunk 0-100: done
+  init chunk 100-200: done
+  init chunk 200-300: done
+  init chunk 300-400: done
+  init chunk 400-500: done
+[TIMING] Prior sampling + chunked init: 16.1s
+Running nested sampling: 500 live, 14D (phase_c marginalized, FULL likelihood)
+Checkpointing every 5 steps to /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+JIT-compiling first step (this will be slow — ~260k freq bins)...
+[TIMING] JIT compilation (first step): 122.3s
+Dead points: 250 dead points [00:00, ? dead points/s]Dead points: 500 dead points [02:01,  2.05 dead points/s]Dead points: 750 dead points [03:42,  2.28 dead points/s]Dead points: 1000 dead points [05:27,  2.33 dead points/s]Dead points: 1250 dead points [07:17,  2.31 dead points/s]Dead points: 1500 dead points [09:13,  2.25 dead points/s]Dead points: 1750 dead points [11:15,  2.18 dead points/s]Dead points: 2000 dead points [13:22,  2.10 dead points/s]Dead points: 2250 dead points [15:34,  2.03 dead points/s]Dead points: 2500 dead points [17:46,  1.98 dead points/s]Dead points: 2750 dead points [20:03,  1.93 dead points/s]Dead points: 3000 dead points [22:25,  1.88 dead points/s]Dead points: 3250 dead points [24:46,  1.84 dead points/s]Dead points: 3500 dead points [26:40,  1.94 dead points/s]Dead points: 3750 dead points [28:24,  2.06 dead points/s]Dead points: 4000 dead points [30:02,  2.18 dead points/s]Dead points: 4250 dead points [31:42,  2.27 dead points/s]Dead points: 4500 dead points [33:20,  2.35 dead points/s]Dead points: 4750 dead points [34:57,  2.41 dead points/s]Dead points: 5000 dead points [36:30,  2.49 dead points/s]Dead points: 5250 dead points [38:04,  2.53 dead points/s]Dead points: 5500 dead points [39:38,  2.57 dead points/s]Dead points: 5750 dead points [41:13,  2.59 dead points/s]Dead points: 6000 dead points [42:46,  2.62 dead points/s]Dead points: 6250 dead points [44:22,  2.62 dead points/s]Dead points: 6500 dead points [45:58,  2.61 dead points/s]Dead points: 6750 dead points [47:35,  2.60 dead points/s]Dead points: 7000 dead points [49:11,  2.60 dead points/s]Dead points: 7250 dead points [50:50,  2.58 dead points/s]Dead points: 7500 dead points [52:28,  2.57 dead points/s]Dead points: 7750 dead points [54:03,  2.59 dead points/s]Dead points: 8000 dead points [55:44,  2.55 dead points/s]Dead points: 8250 dead points [57:24,  2.54 dead points/s]Dead points: 8500 dead points [59:07,  2.51 dead points/s]Dead points: 8750 dead points [1:00:50,  2.48 dead points/s]Dead points: 9000 dead points [1:02:35,  2.44 dead points/s]Dead points: 9250 dead points [1:04:23,  2.41 dead points/s]Dead points: 9500 dead points [1:06:12,  2.37 dead points/s]Dead points: 9750 dead points [1:08:02,  2.34 dead points/s]Dead points: 10000 dead points [1:09:53,  2.32 dead points/s]Dead points: 10250 dead points [1:11:43,  2.30 dead points/s]Dead points: 10500 dead points [1:13:37,  2.27 dead points/s]Dead points: 10750 dead points [1:15:33,  2.23 dead points/s]Dead points: 11000 dead points [1:17:28,  2.22 dead points/s]Dead points: 11250 dead points [1:19:26,  2.19 dead points/s]Dead points: 11500 dead points [1:21:22,  2.18 dead points/s]Dead points: 11750 dead points [1:23:19,  2.16 dead points/s]Dead points: 12000 dead points [1:25:15,  2.16 dead points/s]Dead points: 12250 dead points [1:27:13,  2.15 dead points/s]Dead points: 12500 dead points [1:29:05,  2.17 dead points/s]Dead points: 12750 dead points [1:30:54,  2.21 dead points/s]Dead points: 13000 dead points [1:32:38,  2.26 dead points/s]Dead points: 13250 dead points [1:34:12,  2.37 dead points/s]Dead points: 13500 dead points [1:35:46,  2.45 dead points/s]Dead points: 13750 dead points [1:37:18,  2.53 dead points/s]Dead points: 14000 dead points [1:38:51,  2.57 dead points/s]Dead points: 14250 dead points [1:40:22,  2.62 dead points/s]Dead points: 14500 dead points [1:41:54,  2.65 dead points/s]Dead points: 14750 dead points [1:43:27,  2.66 dead points/s]Dead points: 15000 dead points [1:45:01,  2.66 dead points/s]Dead points: 15250 dead points [1:46:36,  2.65 dead points/s]Dead points: 15500 dead points [1:48:10,  2.65 dead points/s]Dead points: 15750 dead points [1:49:46,  2.64 dead points/s]Dead points: 16000 dead points [1:51:22,  2.63 dead points/s]Dead points: 16250 dead points [1:52:59,  2.62 dead points/s]Dead points: 16500 dead points [1:54:35,  2.61 dead points/s]Dead points: 16750 dead points [1:56:10,  2.62 dead points/s]Dead points: 17000 dead points [1:57:46,  2.61 dead points/s]Dead points: 17250 dead points [1:59:23,  2.60 dead points/s]Dead points: 17250 dead points [1:59:23,  2.37 dead points/s]
+  [checkpoint] Saved at step 5 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 10 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 15 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 20 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 25 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 30 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 35 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 40 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 45 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 50 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 55 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 60 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+  [checkpoint] Saved at step 65 -> /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+Log Evidence: 485.75 +/- 0.30
+Saved to /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1.csv
+Removed checkpoint: /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s05__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive00500__seed0000/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_checkpoint.pkl
+
+==================================================
+TIMING SUMMARY (UNHETERODYNED)
+==================================================
+  Data loading:         4.0s
+  Data stacking:        0.1s
+  Init + prior:        16.1s
+  JIT compilation:    122.3s
+  Sampling:          7163.5s
+  Total:             7308.4s
+==================================================

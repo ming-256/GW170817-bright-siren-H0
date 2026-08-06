@@ -1,0 +1,13 @@
+{
+    "run_id":      "s05__gw170817__taylorf2__baseline__psdKazewong__seed0000",
+    "script":      "GW170817/Scripts/GW170817_heterodyned_1.py",
+    "waveform":    "TaylorF2",
+    "variant":     "baseline_psdKazewong",
+    "n_live":      5000,
+    "num_delete":  2500,
+    "n_bins":      501,
+    "seed":        0,
+    "extra_args":  "--psd-source kazewong",
+    "git_sha":     "c1e7fdd7f281fb08ae458af6995c3c032f084805",
+    "started":     "unknown"
+}

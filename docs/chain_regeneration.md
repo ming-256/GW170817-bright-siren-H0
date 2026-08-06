@@ -1,5 +1,16 @@
 # Chain regeneration on a GPU
 
+**You probably do not need this.** The chains are published in the Zenodo
+deposit; `bash fetch_data.sh chains` downloads them and `bash regenerate.sh`
+then rebuilds every table and figure on a CPU in about three minutes. This
+document is for reproducing the *sampling* rather than the paper.
+
+The sampler is in `pipeline/`, and `pipeline/sessions/session_*.sh` are
+the launch scripts that drove the paper's runs. `bash run_chains.sh list`
+enumerates them. Re-running a session overwrites whatever is in
+`results/test_suite/<run_id>/`, so keep a copy of the published chain if
+you want to diff yours against ours.
+
 The 17 nested-sampling chains the paper cites can be regenerated end-to-
 end on a single NVIDIA A100 (40 GB) GPU using the public stack:
 
@@ -38,11 +49,24 @@ the GW-JAX-Team packages evolve quickly and newer versions are likely to be
 faster and more accurate. Fall back to the tagged versions above only if
 you encounter API incompatibilities with the run scripts.
 
-## Reproducing figures and tables only
+## Input data
 
-The chains are not redistributed as a pre-baked download. To rebuild the
-paper's figures and tables, regenerate the chains with the steps above
-(or request them from the authors), then run `regenerate.sh`.
+The sampler reads LVK strain and PSDs, which are not committed here.
+Fetch them once:
+
+```bash
+bash fetch_data.sh strain
+```
+
+That writes `data/GWOSC/GW170817/` (H1, L1, V1 cleaned strain plus the
+GWTC-1 BayesWave PSDs from LIGO-P1900011) and `data/GWOSC/GW150914/`
+(H1, L1 strain from the GWOSC O1 archive). The five strain files are
+byte-identical by sha256 to the ones used for the paper. Override the
+locations with `GWOSC_GW170817_DIR` and `GWOSC_GW150914_DIR`.
+
+The GWTC-1 GW170817 reference posterior that supplies the heterodyne
+reference parameters is already committed at
+`results/GW170817_GWTC-1.hdf5` (override with `GWTC1_HDF5`).
 
 ## Per-run wall-clock
 
@@ -81,28 +105,53 @@ GW150914 XPHM validation:
 | n_mcmc | 160 (16 × n_dim) |
 | n_dim | 10 |
 
-## Per-run invocation (schematic)
+## Per-run invocation
 
-The exact launch scripts that drove the runs are preserved in the
-main project repository under
-`mnras_paper/test_suite/session_plans/session_NN_*.sh`. The schematic
-form is:
+Each run is one invocation of a `pipeline/` script. The d_L prior is
+selected by *which script* you run, not by a flag:
+
+| Script | d_L prior / variant |
+|--------|---------------------|
+| `pipeline/GW170817_heterodyned_1.py` | baseline, Beta(3,1) — volumetric, LVK convention |
+| `pipeline/GW170817_heterodyned_2.py` | flat-in-z, sampled directly |
+| `pipeline/GW170817_heterodyned_3.py` | baseline prior with sigma_vp = 250 km/s |
+| `pipeline/GW170817_unheterodyned_1.py` | baseline, unheterodyned likelihood |
+| `pipeline/GW150914_heterodyned.py` | GW150914 XPHM validation |
+
+The s14 flat-in-z IMRX run in the table above is exactly:
 
 ```bash
-python -m blackjax_ns.cli \
-    --event gw170817 \
+python pipeline/GW170817_heterodyned_2.py \
     --waveform IMRPhenomXAS_NRTidalv3 \
-    --prior uniform-in-dL \
-    --n-live 5000 --n-delete 2500 --n-mcmc 112 \
-    --heterodyne --het-bins 501 \
-    --phase-marginalise \
-    --output-dir results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3__flatz__seed0000 \
-    --seed 0
+    --data-source local \
+    --psd-source gwtc1 \
+    --ref-params gwtc1 \
+    --phase-marginalization \
+    --n-live 5000 \
+    --output-dir results/test_suite/s14__gw170817__imrphenomxas_nrtidalv3__flatz__seed0000
 ```
 
-The exact CLI may differ between BlackJAX-NS releases; consult the
-sampler's documentation. The full set of run IDs that need to be
-populated is in `results/test_suite/run_catalog.csv`.
+Run `python pipeline/GW170817_heterodyned_1.py --help` for the full flag
+set (`--num-delete`, `--n-bins`, `--seed`, `--m-comp-lo/--m-comp-hi`,
+`--fixed-sky`, and so on).
+
+In practice you want the session wrapper rather than the bare command,
+because it also writes the `config.json` provenance record, canonicalises
+the output to `samples.csv`, and updates `run_catalog.csv`:
+
+```bash
+bash run_chains.sh session_14_xas_prior_sensitivity
+```
+
+`results/test_suite/run_catalog.csv` lists every run ID with its sampler
+settings and status, and each existing `results/test_suite/*/config.json`
+records the script, waveform, settings, seed and git SHA behind that
+chain.
+
+The one exception is `s14__..._reweighted_flatz`, which is not a sampling
+run: it is produced on a CPU from the baseline chain by
+`pipeline/reweight_dL_to_flat_z.py`, as noted at the end of
+`pipeline/sessions/session_14_xas_prior_sensitivity.sh`.
 
 ## After the chains are in place
 

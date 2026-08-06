@@ -1,0 +1,61 @@
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/core/__init__.py", line 24, in <module>
+    from . import multiarray
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/core/multiarray.py", line 10, in <module>
+    from . import overrides
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/core/overrides.py", line 8, in <module>
+    from numpy.core._multiarray_umath import (
+ImportError: dlopen(/opt/miniconda3/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-darwin.so, 0x0002): Library not loaded: @rpath/libgfortran.5.dylib
+  Referenced from: <2361AC48-B968-30D4-90C5-D4993FC8C530> /opt/miniconda3/lib/libopenblasp-r0.3.21.dylib
+  Reason: tried: '/opt/miniconda3/lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/lib/python3.12/site-packages/numpy/core/../../../../libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/lib/python3.12/site-packages/numpy/core/../../../../libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/bin/../lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/bin/../lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/usr/local/lib/libgfortran.5.dylib' (no such file), '/usr/lib/libgfortran.5.dylib' (no such file, not in dyld cache)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/__init__.py", line 130, in <module>
+    from numpy.__config__ import show as show_config
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/__config__.py", line 4, in <module>
+    from numpy.core._multiarray_umath import (
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/core/__init__.py", line 50, in <module>
+    raise ImportError(msg)
+ImportError: 
+
+IMPORTANT: PLEASE READ THIS FOR ADVICE ON HOW TO SOLVE THIS ISSUE!
+
+Importing the numpy C-extensions failed. This error can happen for
+many reasons, often due to issues with your setup or how NumPy was
+installed.
+
+We have compiled some common reasons and troubleshooting tips at:
+
+    https://numpy.org/devdocs/user/troubleshooting-importerror.html
+
+Please note and check the following:
+
+  * The Python version is: Python3.12 from "/opt/miniconda3/bin/python3"
+  * The NumPy version is: "1.26.4"
+
+and make sure that they are the versions you expect.
+Please carefully study the documentation linked above for further help.
+
+Original error was: dlopen(/opt/miniconda3/lib/python3.12/site-packages/numpy/core/_multiarray_umath.cpython-312-darwin.so, 0x0002): Library not loaded: @rpath/libgfortran.5.dylib
+  Referenced from: <2361AC48-B968-30D4-90C5-D4993FC8C530> /opt/miniconda3/lib/libopenblasp-r0.3.21.dylib
+  Reason: tried: '/opt/miniconda3/lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/lib/python3.12/site-packages/numpy/core/../../../../libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/lib/python3.12/site-packages/numpy/core/../../../../libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/bin/../lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/opt/miniconda3/bin/../lib/libgfortran.5.dylib' (duplicate LC_RPATH '@loader_path'), '/usr/local/lib/libgfortran.5.dylib' (no such file), '/usr/lib/libgfortran.5.dylib' (no such file, not in dyld cache)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/mingyang/Desktop/Project/CambridgeProject/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/mnras_paper/test_suite/scripts/prior_only_q_diagnostic.py", line 27, in <module>
+    import numpy as np
+  File "/opt/miniconda3/lib/python3.12/site-packages/numpy/__init__.py", line 135, in <module>
+    raise ImportError(msg) from e
+ImportError: Error importing numpy: you should not try to import numpy from
+        its source directory; please exit the numpy source tree, and relaunch
+        your python interpreter from there.
+prior_samples.csv       -> /Users/mingyang/Desktop/Project/CambridgeProject/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/sH__gw170817__prior_only_q__seed0000/prior_samples.csv
+prior_comparison.csv    -> /Users/mingyang/Desktop/Project/CambridgeProject/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/sH__gw170817__prior_only_q__seed0000/prior_comparison.csv
+KL(project || LVK)  = 0.0211 nats
+KL(LVK || project)  = 0.0213 nats
+Means:  project=0.7495  LVK=0.7205
+P(q>0.95):  project=0.0987  LVK=0.0743

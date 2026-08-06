@@ -1,0 +1,13 @@
+{
+    "run_id":      "s09__gw170817__imrphenomd_nrtidalv2__baseline__nbins00251__seed0000",
+    "script":      "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/GW170817/Scripts/GW170817_heterodyned_1.py",
+    "waveform":    "IMRPhenomD_NRTidalv2",
+    "variant":     "baseline_bins251",
+    "n_live":      5000,
+    "num_delete":  2500,
+    "n_bins":      251,
+    "seed":        0,
+    "extra_args":  "--n-bins 251",
+    "git_sha":     "c0d5c3ccedded8c0904640ad5d6f7d5f360b8970",
+    "started":     "2026-04-26T13:09:16Z"
+}
