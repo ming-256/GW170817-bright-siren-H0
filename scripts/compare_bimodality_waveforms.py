@@ -13,7 +13,7 @@ across the two reference anchorings), so the comparison here is dominated by
 the waveform difference.
 
 Output:
-  - mnras_paper/figures/bimodality_imr_vs_imrx.{pdf,png}
+  - paper/figures/bimodality_imr_vs_imrx.{pdf,png}
   - Results/test_suite/bimodality_waveform_check.csv
 
 This is the qualitative half of referee M4 (the (d_L, iota) bimodality is a

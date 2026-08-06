@@ -1,27 +1,97 @@
 #!/usr/bin/env bash
-# Yang et al. (2026) MNRAS — GPU-only chain regeneration (stub).
+# Yang et al. (2026) MNRAS — GPU chain regeneration.
 #
-# Each per-run chain regenerates a samples.csv (~100 MB) and a sampler.log.
-# Full set runs to several GB.  See docs/chain_regeneration.md for the
-# per-run BlackJAX-NS invocation, the heterodyned-likelihood kernel from
-# Prathaban et al. (2025), and the strain/PSD inputs.
+# The chains this release is built from are committed under
+# results/test_suite/, so you do NOT need to run this to reproduce the
+# paper: `bash regenerate.sh` works from a fresh clone. Use this script
+# when you want to reproduce the sampling itself rather than trust ours.
 #
-# Hardware: a single NVIDIA A100 (40 GB SXM4 or PCIe).
-# Wall-clock estimates:
-#   - GW170817 IMRX  baseline (n_live=5000):                   ~13 min
-#   - GW170817 TF2   baseline (n_live=5000):                    ~4 min
-#   - GW150914 XPHM  validation (n_live=8000, n_mcmc=160):      ~5 h
-#   - Full prior-sensitivity 4-variant suite:                   ~1 h
-#   - Full bimodality 6-run suite (2 seeds):                    ~1.5 h
-#   - All Appendix-A robustness sweeps (~10 runs):              ~6 h
-#   - All 17 cited runs in one batch:                           ~12-15 h
+# Each session script re-runs one group of runs from the paper, writing
+# results/test_suite/<run_id>/{samples.csv,sampler.log,config.json} and
+# updating results/test_suite/run_catalog.csv. Re-running overwrites the
+# committed chain for that run_id, so work on a branch if you want to
+# diff your chains against ours.
 #
-# This script is a stub.  The chains are not redistributed; regenerate
-# them on a GPU (see docs/chain_regeneration.md) into results/test_suite/
-# and then run regenerate.sh to rebuild the figures/tables.
+# Hardware: a single NVIDIA A100 (40 GB SXM4 or PCIe). Other CUDA-12
+# GPUs with >= 24 GB HBM should work but are not benchmarked.
+#
+# Usage:
+#   bash run_chains.sh list                 # show every session and what it produces
+#   bash run_chains.sh session_14_xas_prior_sensitivity
+#   bash run_chains.sh all                  # ~12-15 h on an A100
+#
+# Prerequisites (see docs/chain_regeneration.md for versions and install):
+#   - the GPU stack: jax[cuda12], jimgw, ripplegw, flowMC, blackjax@nested_sampling
+#   - GW170817 strain + PSDs under $GWOSC_GW170817_DIR (default data/GWOSC/GW170817)
+#   - GW150914 strain under $GWOSC_GW150914_DIR (default data/GWOSC/GW150914),
+#     for the session_06 / session_17 validation runs only
+#   Both strain sets are LVK public data; `bash fetch_data.sh` downloads them.
 
 set -euo pipefail
-echo "Chain regeneration is GPU-bound and not redistributed in-band."
-echo "See docs/chain_regeneration.md for the per-run BlackJAX-NS invocation,"
-echo "and per-run wall-clock budgets."
-exit 1
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT"
+
+SESSION_DIR="pipeline/sessions"
+MODE="${1:-list}"
+
+list_sessions() {
+    echo "Session scripts in ${SESSION_DIR}/ (run one with: bash run_chains.sh <name>)"
+    echo
+    printf '  %-38s %s\n' "SESSION" "PURPOSE"
+    for s in "${SESSION_DIR}"/session_*.sh; do
+        name="$(basename "$s" .sh)"
+        # The one-line purpose is the second comment line of each session script.
+        desc="$(sed -n '2s/^# *//p' "$s")"
+        printf '  %-38s %s\n' "$name" "${desc:-—}"
+    done
+    echo
+    echo "Per-run wall-clock estimates and sampler settings: docs/chain_regeneration.md"
+    echo "Run IDs, sampler settings and status:              results/test_suite/run_catalog.csv"
+}
+
+require_gpu_stack() {
+    local py="${PYTHON:-python}"
+    if ! "$py" -c 'import jax, jimgw, blackjax' 2>/dev/null; then
+        echo "error: the GPU sampling stack is not importable with '${py}'." >&2
+        echo "       jax, jimgw and blackjax (nested_sampling branch) are all required." >&2
+        echo "       See docs/chain_regeneration.md for the install recipe." >&2
+        echo "       Note: you do NOT need this stack to reproduce the paper —" >&2
+        echo "       the chains are committed, so 'bash regenerate.sh' works as is." >&2
+        exit 1
+    fi
+}
+
+run_session() {
+    local name="$1"
+    local script="${SESSION_DIR}/${name}.sh"
+    if [[ ! -f "$script" ]]; then
+        echo "error: no such session '${name}'." >&2
+        echo "       Run 'bash run_chains.sh list' to see the available sessions." >&2
+        exit 1
+    fi
+    require_gpu_stack
+    echo "=== ${name} ==="
+    bash "$script"
+}
+
+case "$MODE" in
+    list|--list|-l)
+        list_sessions
+        ;;
+    all)
+        require_gpu_stack
+        for s in "${SESSION_DIR}"/session_*.sh; do
+            echo "=== $(basename "$s" .sh) ==="
+            bash "$s"
+        done
+        ;;
+    session_*)
+        run_session "$MODE"
+        ;;
+    *)
+        echo "Unknown argument: ${MODE}" >&2
+        echo "Use: bash run_chains.sh [list | all | session_<name>]" >&2
+        exit 1
+        ;;
+esac

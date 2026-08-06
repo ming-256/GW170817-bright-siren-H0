@@ -15,7 +15,7 @@ Runs (glob, no catalog required):
 
 Output:
   - Results/test_suite/bimodality_imrx_summary.csv
-  - mnras_paper/figures/bimodality_imrx_dL_iota.{pdf,png}
+  - paper/figures/bimodality_imrx_dL_iota.{pdf,png}
 
 The s14 unrestricted run is the existing IMRX direct uniform-in-d_L run from
 the main analysis; it has no d_L window and uses the default GWTC-1
@@ -184,7 +184,7 @@ def main():
     fig.suptitle("M4: IMRX (NRTidalv3) mode-isolated bimodality cross-check")
     fig.tight_layout()
 
-    fig_dir = os.path.join(REPO_ROOT, "mnras_paper", "figures")
+    fig_dir = os.path.join(REPO_ROOT, "paper", "figures")
     os.makedirs(fig_dir, exist_ok=True)
     for ext in ("pdf", "png"):
         path = os.path.join(fig_dir, f"bimodality_imrx_dL_iota.{ext}")

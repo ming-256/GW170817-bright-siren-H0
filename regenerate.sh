@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 # Yang et al. (2026) MNRAS — CPU-only regeneration pipeline.
 #
-# Inputs:  results/test_suite/sNN__*/samples.csv  (nested-sampling chains, NOT in git; see docs/chain_regeneration.md and run_chains.sh).
-#          The LVK reference HDF5 for GW170817 GWTC-1 must be at the path pointed to by $GWTC1_HDF5 (default: results/GW170817_GWTC-1.hdf5).
+# Inputs:  results/test_suite/sNN__*/samples.csv  (the nested-sampling chains) and their sampler.log
+#          files, plus results/gwtc1_phasemarg/*.csv.  The chains are NOT in git -- they are 3.7 GB
+#          and live in the Zenodo deposit.  Fetch them once with `bash fetch_data.sh chains`
+#          (and check them with `bash fetch_data.sh verify`) before running this.
+#          The LVK GWTC-1 GW170817 reference posterior is at $GWTC1_HDF5 (default: results/GW170817_GWTC-1.hdf5).
+#          Figure 1 additionally needs the 287 MB LVK GWTC-2.1 GW150914 PE release, which is the one
+#          input not committed here: run `bash fetch_data.sh figures` once to get it.  Without it the
+#          other seven figures, all four tables and the PDF still build.
 # Outputs: results/gwtc1_phasemarg/{table1,4,5,6}*.tex  +  paper_tables.csv + paper_diagnostics.csv + evidence_table.csv
 #          results/gwtc1_phasemarg/plots/<7 PDFs>      +  PNG companions
 #          paper/figures/<7 PDFs>                       (copies for the LaTeX include path)
@@ -40,7 +46,18 @@ run_tables() {
 
 run_figures() {
     echo "--- Figures ---"
-    $PY scripts/plot_GW150914_waveform_comparison.py   # Fig 1
+    # Figure 1 overlays the LVK GWTC-2.1 GW150914 posterior, the one input we
+    # do not redistribute. Skip it rather than aborting the whole run, so a
+    # clone without that 287 MB download still gets the other seven figures.
+    GWTC2P1="${GWTC2P1_GW150914_HDF5:-results/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5}"
+    if [[ -s "$GWTC2P1" ]]; then
+        $PY scripts/plot_GW150914_waveform_comparison.py   # Fig 1
+        FIG1_OK=1
+    else
+        echo "  SKIP Fig 1: ${GWTC2P1} not found."
+        echo "       Run 'bash fetch_data.sh figures' to download it (287 MB), then re-run."
+        FIG1_OK=0
+    fi
     $PY scripts/plot_H0_prior_sensitivity.py           # Fig 2
     $PY scripts/compare_bimodality_waveforms.py        # Fig 3
     $PY scripts/plot_bimodality.py                     # Fig 4
@@ -49,7 +66,9 @@ run_figures() {
     $PY scripts/plot_corner_IMRPhenomD_hetero_vs_unhetero.py  # Fig 7
     $PY scripts/plot_scaling_full.py                   # supplementary scaling plot (not a paper figure)
     # Mirror PDFs to paper/figures/
-    for f in corner_GW150914_waveform_comparison H0_prior_sensitivity bimodality H0_waveform_comparison corner_GW170817_waveform_comparison corner_IMRPhenomD_hetero_vs_unhetero scaling_study_full; do
+    MIRROR=(H0_prior_sensitivity bimodality H0_waveform_comparison corner_GW170817_waveform_comparison corner_IMRPhenomD_hetero_vs_unhetero scaling_study_full)
+    [[ "$FIG1_OK" == 1 ]] && MIRROR+=(corner_GW150914_waveform_comparison)
+    for f in "${MIRROR[@]}"; do
         cp -f "results/gwtc1_phasemarg/plots/${f}.pdf"  "paper/figures/${f}.pdf"
     done
     # Fig 3 is written by compare_bimodality_waveforms.py directly to paper/figures/.

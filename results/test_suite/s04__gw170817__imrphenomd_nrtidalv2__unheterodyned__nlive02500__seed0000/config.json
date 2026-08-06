@@ -1,0 +1,20 @@
+{
+    "run_id":      "s04__gw170817__imrphenomd_nrtidalv2__unheterodyned__nlive02500__seed0000",
+    "script":      "GW170817/Scripts/GW170817_unheterodyned_1.py",
+    "waveform":    "IMRPhenomD_NRTidalv2",
+    "variant":     "unheterodyned",
+    "n_live":      2500,
+    "num_delete":  1250,
+    "n_bins":      259201,
+    "seed":        0,
+    "extra_args":  "",
+    "git_sha":     "imported_from_scaling_study_2026-04-22",
+    "started":     "2026-04-22T08:56:10Z",
+    "imported":    "2026-04-25T00:00:00Z",
+    "imported_from": "Results/scaling_study/PhaseMarg_Unheterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_nlive2500.csv",
+    "log_evidence": 490.51,
+    "sigma_log_evidence": 0.14,
+    "wallclock_total_s": 37200.2,
+    "wallclock_sampling_s": 36365.7,
+    "wallclock_jit_s": 803.4
+}

@@ -1,0 +1,13 @@
+{
+    "run_id":      "s07__gw170817__taylorf2__baseline_lvkbounds__seed0000",
+    "script":      "/home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/GW170817/Scripts/GW170817_heterodyned_1.py",
+    "waveform":    "TaylorF2",
+    "variant":     "baseline_lvkbounds",
+    "n_live":      5000,
+    "num_delete":  2500,
+    "n_bins":      501,
+    "seed":        0,
+    "extra_args":  "--m-comp-lo 0.87 --m-comp-hi 1.74",
+    "git_sha":     "fff54d20cf6e806ef76becdb9ace80401abaacfe",
+    "started":     "2026-05-06T13:00:12Z"
+}

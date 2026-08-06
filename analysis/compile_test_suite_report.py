@@ -57,7 +57,7 @@ def main() -> int:
 
     prior_hint_md = textwrap.dedent("""
         Session H (prior-only q-diagnostic) does not produce a summary CSV; run
-        `python mnras_paper/test_suite/analysis/analyze_q_prior.py` and copy its
+        `python pipeline/sessions/prior_only_q_diagnostic.py` and copy its
         stdout into the manuscript's discussion of the LVK q-deficit.
     """).strip()
     parts.append(section("Prior-only q-diagnostic (Session H)", prior_hint_md))

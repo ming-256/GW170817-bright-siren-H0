@@ -1,0 +1,30 @@
+Data source: local, PSD source: gwtc1
+  H1: data=0.6s, PSD(gwtc1)=0.6s, total=2.1s
+  L1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+  V1: data=0.5s, PSD(gwtc1)=0.3s, total=0.8s
+[TIMING] Data loading: 3.8s
+Waveform: IMRPhenomD_NRTidalv2
+Reference (gwtc1): M_c=1.1976, q=0.8659, d_L=40.0
+[TIMING] Reference params: 0.0s
+Setting up heterodyning with 251 bins...
+Heterodyning setup complete. Bin shape: (3, 251)
+[TIMING] Heterodyning setup: 16.2s
+[TIMING] Prior sampling + init: 19.7s
+Running nested sampling: 5000 live, 14D (phase_c marginalized)
+JIT-compiling first step...
+[TIMING] JIT compilation (first step): 38.2s
+Dead points: 2500 dead points [00:00, ? dead points/s]Dead points: 5000 dead points [00:36, 69.35 dead points/s]Dead points: 7500 dead points [00:42, 132.63 dead points/s]Dead points: 10000 dead points [00:49, 186.50 dead points/s]Dead points: 12500 dead points [00:56, 228.79 dead points/s]Dead points: 15000 dead points [01:04, 260.65 dead points/s]Dead points: 17500 dead points [01:11, 283.59 dead points/s]Dead points: 20000 dead points [01:18, 298.95 dead points/s]Dead points: 22500 dead points [01:26, 307.54 dead points/s]Dead points: 25000 dead points [01:34, 314.40 dead points/s]Dead points: 27500 dead points [01:41, 318.39 dead points/s]Dead points: 30000 dead points [01:49, 319.81 dead points/s]Dead points: 32500 dead points [01:57, 320.28 dead points/s]Dead points: 35000 dead points [02:04, 321.33 dead points/s]Dead points: 37500 dead points [02:12, 322.05 dead points/s]Dead points: 40000 dead points [02:19, 327.93 dead points/s]Dead points: 42500 dead points [02:26, 347.56 dead points/s]Dead points: 45000 dead points [02:32, 364.92 dead points/s]Dead points: 47500 dead points [02:38, 380.82 dead points/s]Dead points: 50000 dead points [02:43, 397.38 dead points/s]Dead points: 52500 dead points [02:49, 411.14 dead points/s]Dead points: 55000 dead points [02:54, 422.63 dead points/s]Dead points: 57500 dead points [03:00, 430.77 dead points/s]Dead points: 60000 dead points [03:05, 437.13 dead points/s]Dead points: 62500 dead points [03:11, 440.84 dead points/s]Dead points: 65000 dead points [03:17, 443.63 dead points/s]Dead points: 67500 dead points [03:22, 443.82 dead points/s]Dead points: 70000 dead points [03:28, 445.53 dead points/s]Dead points: 72500 dead points [03:33, 445.99 dead points/s]Dead points: 75000 dead points [03:39, 446.94 dead points/s]Dead points: 77500 dead points [03:45, 445.82 dead points/s]Dead points: 80000 dead points [03:50, 444.91 dead points/s]Dead points: 82500 dead points [03:56, 442.39 dead points/s]Dead points: 85000 dead points [04:01, 444.11 dead points/s]Dead points: 87500 dead points [04:07, 442.68 dead points/s]Dead points: 90000 dead points [04:13, 438.29 dead points/s]Dead points: 92500 dead points [04:19, 436.96 dead points/s]Dead points: 95000 dead points [04:25, 435.93 dead points/s]Dead points: 97500 dead points [04:30, 432.92 dead points/s]Dead points: 100000 dead points [04:36, 432.32 dead points/s]Dead points: 102500 dead points [04:42, 430.84 dead points/s]Dead points: 105000 dead points [04:48, 430.01 dead points/s]Dead points: 107500 dead points [04:54, 431.40 dead points/s]Dead points: 110000 dead points [04:59, 433.27 dead points/s]Dead points: 112500 dead points [05:05, 436.33 dead points/s]Dead points: 115000 dead points [05:11, 440.59 dead points/s]Dead points: 117500 dead points [05:16, 442.41 dead points/s]Dead points: 120000 dead points [05:22, 445.91 dead points/s]Dead points: 122500 dead points [05:27, 449.23 dead points/s]Dead points: 125000 dead points [05:32, 454.59 dead points/s]Dead points: 127500 dead points [05:38, 461.20 dead points/s]Dead points: 130000 dead points [05:43, 463.81 dead points/s]Dead points: 132500 dead points [05:48, 467.40 dead points/s]Dead points: 135000 dead points [05:54, 467.69 dead points/s]Dead points: 137500 dead points [05:59, 470.94 dead points/s]Dead points: 140000 dead points [06:04, 470.55 dead points/s]Dead points: 142500 dead points [06:09, 472.89 dead points/s]Dead points: 145000 dead points [06:15, 470.25 dead points/s]Dead points: 147500 dead points [06:20, 471.22 dead points/s]Dead points: 150000 dead points [06:25, 471.87 dead points/s]Dead points: 152500 dead points [06:31, 468.85 dead points/s]Dead points: 155000 dead points [06:36, 466.01 dead points/s]Dead points: 157500 dead points [06:42, 464.43 dead points/s]Dead points: 160000 dead points [06:47, 464.29 dead points/s]Dead points: 162500 dead points [06:52, 463.14 dead points/s]Dead points: 165000 dead points [06:58, 463.71 dead points/s]Dead points: 167500 dead points [07:03, 462.49 dead points/s]Dead points: 170000 dead points [07:09, 462.32 dead points/s]Dead points: 170000 dead points [07:09, 390.31 dead points/s]
+Log Evidence: 486.57 +/- 0.11
+Saved to /home/user/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves/Results/test_suite/s09__gw170817__imrphenomd_nrtidalv2__baseline__nbins00251__seed0000/PhaseMarg_Heterodyned_IMRPhenomD_NRTidalv2_local_psd-gwtc1_ref-gwtc1_baseline.csv
+
+==================================================
+TIMING SUMMARY
+==================================================
+  Data loading:         3.8s
+  Reference params:     0.0s
+  Heterodyne setup:    16.2s
+  Init + prior:        19.7s
+  JIT compilation:     38.2s
+  Sampling:           429.1s
+  Total:              530.1s
+==================================================

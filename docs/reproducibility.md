@@ -1,9 +1,8 @@
 # Reproducibility — fresh-clone → main.pdf in ~3 min
 
 A clean reproduction of every numerical claim, table, and figure in the
-paper from this repository on a CPU-only laptop, once the nested-sampling
-chains are in place (they are not redistributed — regenerate them per §2
-or request them from the authors).
+paper on a CPU-only laptop: clone, fetch the chains from Zenodo once, and
+run `regenerate.sh`.
 
 ## 1. Environment
 
@@ -21,20 +20,29 @@ h5py ≥ 3.10, anesthetic ≥ 2.8).
 
 ## 2. Chains
 
-The 17 nested-sampling chains the paper cites (~5 GB combined) are **not
-redistributed**; regenerate them with `run_chains.sh` (GPU required; see
-`docs/chain_regeneration.md`). The per-run directories land under
-`results/test_suite/` with the layout:
+Fetch them once from the Zenodo deposit (3.7 GB), then verify:
+
+```bash
+bash fetch_data.sh chains
+bash fetch_data.sh verify
+```
+
+`verify` checks every file's size and sha256 against
+`results/CHAIN_MANIFEST.csv`, which ships in git, so you can tell a good
+download from a truncated one.
+
+They unpack under `results/`, one directory per run, alongside the
+`sampler.log` and `config.json` that are already in the clone:
 
 ```
 results/test_suite/
-├── run_catalog.csv                        # already in git
-├── bimodality_summary.csv                 # already in git
-├── ...                                    # already in git
+├── run_catalog.csv                        # every run ID, settings, status
+├── bimodality_summary.csv                 # derived summaries
+├── ...
 ├── s07__gw170817__imrphenomxas_nrtidalv3__baseline_lvkbounds__seed0000/
-│   ├── samples.csv                        # regenerated
-│   ├── sampler.log                        # regenerated
-│   └── config.json                        # regenerated
+│   ├── samples.csv                        # the chain (anesthetic format)
+│   ├── sampler.log                        # evidences are parsed from here
+│   └── config.json                        # script, settings, seed, git SHA
 ├── s10__gw170817__imrphenomd_nrtidalv2__flatz__dL30-75__refGWTC1__seed0000/
 │   └── ...
 ├── s14__gw170817__imrphenomxas_nrtidalv3__baseline__seed0000/
@@ -42,20 +50,20 @@ results/test_suite/
 └── ...
 ```
 
-The required run IDs are listed in `MANIFEST.md` under "results/" and
-in `results/test_suite/run_catalog.csv`.
+The host-localised prior-variant chains land in
+`results/gwtc1_phasemarg/`, and the LVK GWTC-1 GW170817 reference
+posterior is already committed at `results/GW170817_GWTC-1.hdf5`
+(override the path with `$GWTC1_HDF5`). `MANIFEST.md` maps each figure
+and table to the runs behind it.
 
-You will also need the LVK GW170817 GWTC-1 reference HDF5
-(used by `scripts/plot_GW170817_waveform_corner.py`):
+The only input not committed is the LVK GWTC-2.1 GW150914 PE release
+(287 MB), used by Figure 1 alone:
 
 ```bash
-# Place anywhere; tell the pipeline via GWTC1_HDF5 environment variable.
-curl -L -o results/GW170817_GWTC-1.hdf5 \
-  "https://dcc.ligo.org/public/0156/P1800061/.../GW170817_GWTC-1.hdf5"
-export GWTC1_HDF5="$(pwd)/results/GW170817_GWTC-1.hdf5"
+bash fetch_data.sh figures
 ```
 
-And the LVK GW150914 GWTC-2.1 reference HDF5 (used by Figure 1):
+which is equivalent to
 
 ```bash
 # From the LVK GWTC-2.1 Zenodo deposit (DOI 10.5281/zenodo.6513631)
@@ -63,6 +71,9 @@ curl -L -o results/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h
   "https://zenodo.org/record/6513631/files/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5"
 export GWTC2P1_GW150914_HDF5="$(pwd)/results/IGWN-GWTC2p1-v2-GW150914_095045_PEDataRelease_mixed_nocosmo.h5"
 ```
+
+Skip it and `regenerate.sh` still builds the other seven figures, all
+four tables, and the PDF.
 
 ## 3. Regenerate
 

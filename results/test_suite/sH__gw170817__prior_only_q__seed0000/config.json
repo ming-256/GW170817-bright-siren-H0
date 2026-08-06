@@ -1,0 +1,13 @@
+{
+    "run_id":      "sH__gw170817__prior_only_q__seed0000",
+    "script":      "mnras_paper/test_suite/scripts/prior_only_q_diagnostic.py",
+    "waveform":    "n/a",
+    "variant":     "prior_only",
+    "n_live":      5000,
+    "num_delete":  0,
+    "n_bins":      0,
+    "seed":        0,
+    "extra_args":  "",
+    "git_sha":     "9a4b578f7cc6b17aadb28582c231a9a7c7d3a5af",
+    "started":     "2026-04-24T18:43:18Z"
+}

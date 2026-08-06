@@ -148,7 +148,7 @@ def _make_plot(theta, horizons):
     ax1.legend(fontsize=8, frameon=False)
 
     fig.tight_layout()
-    fig_dir = os.path.join(REPO_ROOT, "mnras_paper", "figures")
+    fig_dir = os.path.join(REPO_ROOT, "paper", "figures")
     os.makedirs(fig_dir, exist_ok=True)
     for ext in ("pdf", "png"):
         path = os.path.join(fig_dir, f"selection_term_Ns.{ext}")

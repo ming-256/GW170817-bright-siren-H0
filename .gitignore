@@ -16,6 +16,11 @@ __pycache__/
 *.synctex.gz
 *.toc
 
+# ...but the per-run sampler logs are release data, not build artefacts:
+# build_paper_tables.py parses "Log Evidence:" out of them for every lnZ in
+# Tables 1, 5 and 6, so they must survive the *.log rule above.
+!results/test_suite/**/sampler.log
+
 # OS / editor cruft
 .DS_Store
 Thumbs.db
@@ -28,12 +33,32 @@ Thumbs.db
 venv/
 env/
 
-# Large data files that should NOT be committed via plain git
-# (use Zenodo for these):
-#   results/test_suite/sNN__*/  — per-run nested-sampling chains (~100 MB each)
-#   results/GW170817_GWTC-1.hdf5  — LVK reference HDF5
-# The smaller summary CSVs (results/test_suite/*.csv directly under test_suite/)
-# remain committed because their typical size is ~1 KB.
-results/test_suite/s[0-9]*__*/
-results/GW170817_GWTC-1.hdf5
+# ---------------------------------------------------------------------------
+# Bulk data. Git carries the code, the per-run provenance and the derived
+# summaries; the heavy data is fetched with `bash fetch_data.sh`.
+# ---------------------------------------------------------------------------
+
+# The nested-sampling chains: 58 files, 3.7 GB, one of them 1.2 GB. That last
+# one cannot go in a GitHub repository at all (100 MB per-file hard limit), so
+# rather than publish an arbitrary subset here and the remainder elsewhere, the
+# whole set lives in the Zenodo deposit and none of it is committed.
+#   get them:    bash fetch_data.sh chains
+#   check them:  bash fetch_data.sh verify   (against results/CHAIN_MANIFEST.csv)
+#   rebuild the bundle: bash make_chain_bundle.sh
+# Everything else under results/ -- sampler logs, config.json, run_catalog.csv,
+# the derived summary CSVs, the tables and the figure PDFs -- IS committed.
+results/test_suite/*/samples.csv
+results/test_suite/*/prior_samples.csv
+results/gwtc1_phasemarg/*PhaseMarg*.csv
+results/scaling_study/*PhaseMarg*.csv
+
+# Chain bundles built by make_chain_bundle.sh for upload.
+gw170817-chains-*.tar.gz
+gw170817-chains-*.sha256
+
+# LVK data we do not redistribute. fetch_data.sh puts the strain and PSD
+# inputs under data/; they are byte-identical (sha256) to the ones that
+# produced the chains. The GWTC-2.1 GW150914 PE release is 287 MB and is
+# LVK's to distribute.
+data/
 results/**/IGWN-GWTC2p1-v2-*.h5
