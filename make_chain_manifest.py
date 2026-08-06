@@ -16,7 +16,10 @@ manifest. The checks below exist so that cannot happen again:
   - refuse symlinks (resolve them before recording),
   - refuse Git LFS pointer files,
   - refuse anything under MIN_CHAIN_BYTES, since the smallest real chain
-    in this release is 5.2 MB.
+    in this release is 5.5 MB,
+  - refuse to write a manifest that is empty or that loses chains the
+    existing one records, so running this in a clone without the chains
+    cannot silently erase the contract.
 
 Usage:
   python make_chain_manifest.py            # rewrite results/CHAIN_MANIFEST.csv
@@ -73,9 +76,30 @@ def collect():
     return rows, problems
 
 
+def existing_rows():
+    if not os.path.exists(MANIFEST):
+        return None
+    with open(MANIFEST) as fh:
+        return list(csv.DictReader(fh))
+
+
 def main():
     check_only = "--check" in sys.argv[1:]
     rows, problems = collect()
+    existing = existing_rows()
+
+    # No chains on disk at all is the ordinary state of a fresh clone, not a
+    # manifest that has drifted. Say so, and never treat it as a reason to
+    # rewrite: without this guard, running the script here would replace 58
+    # rows with a header and nothing else.
+    if not rows:
+        print(
+            "no chains found on disk — nothing to record.\n"
+            "This is expected in a fresh clone; run 'bash fetch_data.sh chains'\n"
+            f"to download them. {MANIFEST} left untouched.",
+            file=sys.stderr,
+        )
+        return 1
 
     if problems:
         print("refusing to write the manifest:", file=sys.stderr)
@@ -89,16 +113,32 @@ def main():
         return 1
 
     if check_only:
-        if not os.path.exists(MANIFEST):
+        if existing is None:
             print(f"{MANIFEST} does not exist", file=sys.stderr)
             return 1
-        existing = list(csv.DictReader(open(MANIFEST)))
         current = [{k: str(v) for k, v in r.items()} for r in rows]
         if existing != current:
             print(f"{MANIFEST} is out of date; rerun without --check", file=sys.stderr)
             return 1
         print(f"{MANIFEST} is current: {len(rows)} chains")
         return 0
+
+    # A partial checkout must not quietly shrink the published set.
+    if existing is not None and len(rows) < len(existing):
+        lost = {r["path"] for r in existing} - {r["path"] for r in rows}
+        print(
+            f"refusing to write: {MANIFEST} records {len(existing)} chains but only "
+            f"{len(rows)} are on disk.\nMissing {len(lost)}, including:",
+            file=sys.stderr,
+        )
+        for p in sorted(lost)[:5]:
+            print(f"  - {p}", file=sys.stderr)
+        print(
+            "\nFetch the full set first, or delete the manifest deliberately if the\n"
+            "release really is losing these chains.",
+            file=sys.stderr,
+        )
+        return 1
 
     with open(MANIFEST, "w", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=["path", "bytes", "sha256", "note"])
