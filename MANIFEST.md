@@ -181,3 +181,4 @@ No figure or table in the paper reads a run whose chain is absent.
 | `docs/reproducibility.md` | fresh-clone → main.pdf recipe |
 | `docs/chain_regeneration.md` | per-run `pipeline/` invocation, sampler settings, software versions, expected wall-clock |
 | `docs/data_provenance.md` | which paper claim each summary CSV underwrites |
+| `docs/publishing_the_chains.md` | runbook for depositing a new chain bundle on Zenodo (maintainers) |

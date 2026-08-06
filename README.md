@@ -168,7 +168,8 @@ budget guide on a single NVIDIA A100 (40 GB):
 │   ├── CHAIN_MANIFEST.csv   # sha256 + size of all 58 chains (they live on Zenodo)
 │   ├── test_suite/<run_id>/ # sampler.log + config.json per run (chains fetched here)
 │   └── gwtc1_phasemarg/     # host-localised chains, tables, figure PDFs
-└── docs/                    # reproducibility / chain_regeneration / data_provenance
+└── docs/                    # reproducibility / chain_regeneration / data_provenance /
+                             #   publishing_the_chains (maintainer runbook)
 ```
 
 ## Data sources

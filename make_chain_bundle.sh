@@ -132,7 +132,10 @@ if [[ -n "$SOURCE" ]]; then
 fi
 
 echo "Building $OUT ..."
-tar -czf "$OUT" "${FILES[@]}"
+# On macOS, bsdtar stores AppleDouble "._" companions for extended attributes
+# unless told otherwise. They would end up in the deposit and confuse anyone
+# unpacking it on Linux.
+COPYFILE_DISABLE=1 tar -czf "$OUT" "${FILES[@]}"
 
 # Absolute, because with --source the cwd is a staging dir that is about to
 # be removed.
