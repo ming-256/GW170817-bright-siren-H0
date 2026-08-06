@@ -5,6 +5,21 @@ For the per-file classification companion (564 rows including
 exploratory files NOT shipped in this release), see the audit's
 inventory CSV in the main project repository.
 
+**A note on that inventory:** it predates the consolidation of every
+numerical claim into `scripts/build_paper_tables.py`, and still marks
+three superseded scripts as "include" —
+`compute_prior_sensitivity.py`, `compute_summary_stats.py` and
+`compute_waveform_systematics.py`, together with their outputs
+(`prior_sensitivity*.csv`, `summary_stats*.csv`,
+`waveform_systematics.csv`). They are deliberately not shipped. Their
+divergence statistics (KL, JSD, Hellinger, Wasserstein between prior
+variants and between waveforms) appear nowhere in the manuscript, and
+they use a different MAP estimator from the one the paper reports —
+69.7 / 72.1 against the paper's binned 70.5 km/s/Mpc. The paper's one
+Wasserstein figure is the heterodyne-bin sweep, which *is* released as
+`results/test_suite/het_bins_sweep_wasserstein.csv`. Treat the inventory
+as stale on this point rather than the release as incomplete.
+
 ## Top-level
 
 | Path | Role |
