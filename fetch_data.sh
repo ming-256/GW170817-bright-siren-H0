@@ -31,6 +31,25 @@ cd "$ROOT"
 GW170817_DIR="${GWOSC_GW170817_DIR:-data/GWOSC/GW170817}"
 GW150914_DIR="${GWOSC_GW150914_DIR:-data/GWOSC/GW150914}"
 
+# Find a Python 3. Windows installs generally provide `python` but not
+# `python3`, and Git Bash inherits that, so hardcoding python3 makes both
+# `chains` and `verify` fail there with "command not found". Override with
+# PYTHON=... if you need a specific interpreter.
+PY_BIN="${PYTHON:-}"
+if [[ -z "$PY_BIN" ]]; then
+    for c in python3 python py; do
+        if command -v "$c" >/dev/null 2>&1 &&
+           "$c" -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)' 2>/dev/null; then
+            PY_BIN="$c"; break
+        fi
+    done
+fi
+if [[ -z "$PY_BIN" ]]; then
+    echo "error: no Python 3 interpreter found (looked for python3, python, py)." >&2
+    echo "       Install Python 3, or set PYTHON=/path/to/python and re-run." >&2
+    exit 1
+fi
+
 get() {
     local url="$1" dest="$2"
     if [[ -s "$dest" ]]; then
@@ -89,7 +108,7 @@ fetch_chains() {
     # repository, which must NOT be matched: it is the code, not the data,
     # and unpacking it over results/ would be wrong.
     local urls
-    urls="$(printf '%s' "$json" | python3 -c '
+    urls="$(printf '%s' "$json" | "$PY_BIN" -c '
 import json, re, sys
 d = json.load(sys.stdin)
 print("  resolved to version:", d.get("metadata", {}).get("version", "?"), file=sys.stderr)
@@ -136,7 +155,7 @@ for f in d.get("files", []):
 
 verify_chains() {
     echo "--- verifying chains against results/CHAIN_MANIFEST.csv ---"
-    python3 - <<'PY'
+    "$PY_BIN" - <<'PY'
 import csv, hashlib, os, sys
 man = 'results/CHAIN_MANIFEST.csv'
 if not os.path.exists(man):

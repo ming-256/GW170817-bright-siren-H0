@@ -50,10 +50,11 @@ fi
 
 # Take the file list from the manifest, so the bundle and the checksums that
 # ship in git can never drift apart.
-FILES=()
-while IFS= read -r line; do
-    [[ -n "$line" ]] && FILES+=("$line")
-done < <(tail -n +2 "$MANIFEST" | cut -d, -f1)
+FILES=(); SIZES=()
+while IFS=, read -r mpath mbytes _rest; do
+    [[ -n "$mpath" ]] || continue
+    FILES+=("$mpath"); SIZES+=("$mbytes")
+done < <(tail -n +2 "$MANIFEST")
 
 echo "Chain files listed in the manifest: ${#FILES[@]}"
 
@@ -71,21 +72,27 @@ resolve() {
     return 1
 }
 
-# A Git LFS pointer is a ~130-byte text file starting with this line. Catching
-# it here is worth the trouble: tarring pointers would produce a bundle that
-# looks the right shape and is entirely useless.
-is_lfs_pointer() {
-    [[ $(stat -c%s "$1" 2>/dev/null || stat -f%z "$1") -lt 1024 ]] &&
-        head -c 40 "$1" | grep -q 'git-lfs.github.com'
-}
+filesize() { stat -c%s "$1" 2>/dev/null || stat -f%z "$1"; }
 
-missing=0; pointers=0
+# The manifest records the exact byte count of every chain, so compare against
+# that rather than guessing. It catches all three ways a stand-in can reach
+# here looking plausible: a Git LFS pointer, a Windows checkout that wrote a
+# symlink as a small text file holding its target path, and a truncated copy.
+missing=0; wrong=0
 declare -a SRC
-for f in "${FILES[@]}"; do
+for i in "${!FILES[@]}"; do
+    f="${FILES[$i]}"
     if src=$(resolve "$f"); then
-        if is_lfs_pointer "$src"; then
-            echo "  LFS POINTER (not the real file): $src" >&2
-            pointers=$((pointers + 1))
+        actual=$(filesize "$src"); want="${SIZES[$i]}"
+        if [[ "$actual" != "$want" ]]; then
+            if [[ "$actual" -lt 1024 ]] && head -c 40 "$src" | grep -q 'git-lfs.github.com'; then
+                echo "  LFS POINTER (run 'git lfs pull'): $src" >&2
+            elif [[ "$actual" -lt 4096 ]]; then
+                echo "  STUB, not the chain ($actual B, expected $want): $src" >&2
+            else
+                echo "  WRONG SIZE ($actual B, expected $want): $src" >&2
+            fi
+            wrong=$((wrong + 1))
         fi
         SRC+=("$src")
     else
@@ -95,10 +102,12 @@ for f in "${FILES[@]}"; do
     fi
 done
 
-if (( pointers )); then
+if (( wrong )); then
     echo >&2
-    echo "error: $pointers file(s) are Git LFS pointers, not data." >&2
-    echo "       Run 'git lfs pull' in the checkout holding the chains, then retry." >&2
+    echo "error: $wrong file(s) do not match the size recorded in $MANIFEST." >&2
+    echo "       Usually this means 'git lfs pull' has not been run where the" >&2
+    echo "       chains live. On Windows it can also mean git wrote a symlink as" >&2
+    echo "       a text stub; see docs/publishing_the_chains.md." >&2
     exit 1
 fi
 if (( missing )); then

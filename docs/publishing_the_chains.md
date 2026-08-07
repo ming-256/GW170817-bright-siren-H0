@@ -14,61 +14,91 @@ You only need this when the chains change. Ordinary readers never run it.
 
 | | |
 |---|---|
-| The **working repository** | `GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves`, where the chains live in Git LFS |
+| The **chains** | wherever the working repository's `Results/` tree lives, with Git LFS objects fetched |
 | This **release repository** | `GW170817-bright-siren-H0` |
-| `git-lfs` | `brew install git-lfs` / `apt install git-lfs`, then `git lfs install` once |
+| A **bash shell** | Git Bash on Windows (ships with Git for Windows), or WSL; any shell on macOS/Linux |
+| `git-lfs` | included in Git for Windows; else `brew install git-lfs` / `apt install git-lfs`, then `git lfs install` |
 | Python 3 | for the manifest tooling; no third-party packages needed |
 | Disk | ~9 GB free (3.8 GB of chains + a 1.8 GB tarball + staging) |
 
-Everything here is tested on bash 3.2, so the stock `/bin/bash` on macOS is
-fine. `sha256sum` and `shasum -a 256` are both handled.
+The scripts are written for bash 3.2, so the stock `/bin/bash` on macOS is
+fine, and they find `python` when `python3` does not exist, which is the
+usual Windows situation.
+
+### Windows: paths and shell
+
+Run everything from **Git Bash**, not `cmd` or PowerShell. Git Bash
+rewrites drive letters, so translate Windows paths like this:
+
+| Windows | Git Bash |
+|---|---|
+| `C:\Users\Ming\Documents\CambridgeProject` | `/c/Users/Ming/Documents/CambridgeProject` |
+| `F:\ProjectLatest\CambridgeProject` | `/f/ProjectLatest/CambridgeProject` |
+
+(Under WSL it is `/mnt/c/...` and `/mnt/f/...` instead.)
+
+One performance note: the bundler hardlinks files into a staging directory
+rather than copying 3.8 GB, but hardlinks cannot cross volumes. If the
+chains are on `F:` and your temp directory is on `C:`, it silently falls
+back to copying. Put the staging directory on the same drive to avoid
+that:
+
+```bash
+export TMPDIR=/f/tmp && mkdir -p "$TMPDIR"
+```
 
 ---
 
 ## 1. Get the chains onto disk, for real
 
-In the **working repository**:
+In the tree that holds the chains:
 
 ```bash
-cd /path/to/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves
+cd /f/ProjectLatest/CambridgeProject          # or wherever Results/ lives
 git lfs install
 git lfs pull
 ```
 
 `git lfs pull` is the step people skip. Without it the chain files are
 ~130-byte pointer stubs, and a bundle built from them looks the right
-shape and is worthless. The tooling below refuses to build in that state,
-but it is quicker to just pull first.
+shape and is worthless. The tooling refuses to build in that state, but it
+is quicker to just pull first.
 
 Three of the chains are symlinks rather than files — in the two `s19` runs
 `samples.csv` points at the `PhaseMarg_*.csv` beside it, and in `s04` at a
-scaling-study chain elsewhere. The bundler resolves them for you; you do
-not need to do anything about it.
+scaling-study chain elsewhere. The bundler resolves them for you.
+
+> **Windows and symlinks.** Git only creates real symlinks on Windows when
+> `core.symlinks` is on and the account may create them; otherwise it
+> writes a small text file containing the target path. If step 3 reports
+> those three as missing or too small, that is what happened. Fix it by
+> copying the target over the stub, e.g.
+> `cp results/test_suite/s19__*imrphenomd*fixedsky*/PhaseMarg_*.csv results/test_suite/s19__*imrphenomd*fixedsky*/samples.csv`,
+> or clone with `git clone -c core.symlinks=true`.
 
 ## 2. Get the release repository
 
 ```bash
-cd /path/to/somewhere
+cd /c/Users/Ming/Documents
 git clone https://github.com/ming-256/GW170817-bright-siren-H0
 cd GW170817-bright-siren-H0
-git checkout claude/gw170817-repo-completeness-23hw7j   # until the PR is merged
 ```
 
 ## 3. Build the bundle
 
-Point it at the working repository. It maps that tree's capitalised
-`Results/` onto the release layout's `results/`, hardlinks rather than
-copies where it can, and refuses to proceed on a pointer or a missing file.
+Point it at the tree holding the chains. It maps that tree's capitalised
+`Results/` onto the release layout's `results/`, hardlinks where it can,
+and refuses to proceed on a pointer or a missing file.
 
 ```bash
-bash make_chain_bundle.sh v1.1.0 --source /path/to/GPU-Accelerated-Bayesian-Inference-of-Gravitational-Waves
+bash make_chain_bundle.sh v1.1.0 --source /f/ProjectLatest/CambridgeProject
 ```
 
 Expect roughly:
 
 ```
 Chain files listed in the manifest: 58
-Staging into /tmp/gw170817-bundle.XXXX ...
+Staging into /f/tmp/gw170817-bundle.XXXX ...
 Building gw170817-chains-v1.1.0.tar.gz ...
 
 === done ===
@@ -82,8 +112,8 @@ About five minutes, nearly all of it gzip.
 and run `git lfs pull`. It fails in under a second rather than producing a
 bad 1.8 GB artefact.
 
-**If it stops with `MISSING`** — the path it names is not in either tree.
-Check you passed the right `--source`.
+**If it stops with `MISSING`** — the path it names is in neither tree.
+Check the `--source` argument, and see the symlink note in step 1.
 
 ### Sanity check before uploading
 
@@ -99,8 +129,8 @@ will not unpack into a clone correctly.
 
 1. Go to <https://doi.org/10.5281/zenodo.21038511>. That is the **concept
    DOI** and always lands on the newest version.
-2. **New version** (not a new upload — a new version keeps the concept DOI
-   and the citation in the paper).
+2. **New version** — not a new upload. A new version keeps the concept DOI,
+   and so keeps the citation in the paper valid.
 3. Upload `gw170817-chains-v1.1.0.tar.gz`.
 4. Leave the existing GitHub release snapshot in place. `fetch_data.sh`
    knows to ignore it and take only the chain bundle.
@@ -111,7 +141,7 @@ will not unpack into a clone correctly.
 6. **Publish.**
 
 > **Keep the word `chain` in the filename.** `fetch_data.sh` selects the
-> bundle by matching `chain` in the name and explicitly skips the
+> bundle by matching `chain` in the name, and explicitly skips the
 > `GW170817-bright-siren-H0-v*.zip` snapshot. A file named
 > `data-v1.1.0.tar.gz` would not be found.
 
@@ -123,10 +153,9 @@ the paper needs to change** — it cites the concept DOI.
 The real test is whether a stranger can use it. From a clean clone:
 
 ```bash
-cd /tmp
+cd /c/Users/Ming/Documents
 git clone https://github.com/ming-256/GW170817-bright-siren-H0 check
 cd check
-git checkout claude/gw170817-repo-completeness-23hw7j   # until merged
 
 bash fetch_data.sh chains     # resolves the concept DOI, downloads, unpacks
 bash fetch_data.sh verify     # expect: verified 58, missing 0, corrupt 0
@@ -160,10 +189,9 @@ bash regenerate.sh figures    # 8 PDFs
 
 ## 6. Afterwards
 
-- Merge the pull requests in both repositories.
-- Update the GitHub **About** blurb on the release repository — it still
-  describes a data-and-analysis release without mentioning that the
-  sampling pipeline is now included.
+Update the GitHub **About** blurb on the release repository — it still
+describes a data-and-analysis release without mentioning that the sampling
+pipeline is now included.
 
 ---
 
@@ -178,8 +206,9 @@ python make_chain_manifest.py --check  # assert it matches what is on disk
 ```
 
 It refuses to record a symlink, a Git LFS pointer, or anything under 1 MB
-when the smallest genuine chain here is 5.2 MB. Commit the regenerated
-manifest, then build and upload as above.
+when the smallest genuine chain here is 5.5 MB, and it refuses to shrink
+the recorded set if you run it somewhere the chains are only partly
+present. Commit the regenerated manifest, then build and upload as above.
 
 ## Reference
 
@@ -193,3 +222,6 @@ manifest, then build and upload as above.
 | `python make_chain_manifest.py [--check]` | rebuild / check the checksum manifest |
 | `bash regenerate.sh [tables\|figures\|pdf]` | rebuild the paper |
 | `bash run_chains.sh list` | list the GPU sampling sessions |
+
+`PYTHON=/path/to/python` overrides interpreter detection if the scripts
+pick the wrong one.
